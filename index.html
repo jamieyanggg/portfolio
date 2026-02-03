@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JamiePortfolio</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Fredoka+One&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Optional: small custom tweaks -->
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* For scroll reveal elements we control in JS */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    /* Floating icon smooth keyframes (if you want extra motion) */
+    @keyframes float {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+    .float-slow {
+      animation: float 6s ease-in-out infinite;
+    }
+    .float-slow.delay-1 {
+      animation-delay: 1s;
+    }
+    .float-slow.delay-2 {
+      animation-delay: 2s;
+    }
+    .float-slow.delay-3 {
+      animation-delay: 3s;
+    }
+  </style>
+</head>
+
+  <body class="min-h-screen bg-[#f5f1ed] relative overflow-x-hidden">
+    <div id="root">
+      <!-- background pattern -->
+      <div
+        class="fixed inset-0 opacity-30 pointer-events-none bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiM5OTk5OTkiIGZpbGwtb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMzYgMzRjMC0yLjIwOS0xLjc5MS00LTQtNHMtNCAxLjc5MS00IDQgMS43OTEgNCA0IDQgNC0xLjc5MSA0LTR6bTAtMzBjMC0yLjIwOS0xLjc5MS00LTQtNHMtNCAxLjc5MS00IDQgMS43OTEgNCA0IDQgNC0xLjc5MSA0LTR6Ii8+PC9nPjwvZz48L3N2Zz4=')] z-0"
+      ></div>
+
+      <!-- floating icons -->
+      <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div class="absolute float-slow" style="left: 10%; top: 15%;">
+          <!-- heart -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-10 h-10 md:w-12 md:h-12 text-pink-300"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <path
+              d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"
+            />
+          </svg>
+        </div>
+        <div class="absolute float-slow delay-1" style="left: 85%; top: 20%;">
+          <!-- star -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-10 h-10 md:w-12 md:h-12 text-purple-300"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <path
+              d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16Z"
+            />
+          </svg>
+        </div>
+        <div class="absolute float-slow delay-2" style="left: 15%; top: 60%;">
+          <!-- sparkles -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-10 h-10 md:w-12 md:h-12 text-yellow-300"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <path
+              d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0Z"
+            />
+          </svg>
+        </div>
+        <div class="absolute float-slow delay-3" style="left: 90%; top: 70%;">
+          <!-- circle -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-10 h-10 md:w-12 md:h-12 text-emerald-300"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.5"
+          >
+            <circle cx="12" cy="12" r="10" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- NAVBAR -->
+      <nav
+        class="fixed top-6 inset-x-0 flex justify-center z-50"
+        style="font-family: 'Caveat', cursive;"
+      >
+        <div
+          class="bg-white/90 backdrop-blur-md rounded-full px-8 py-4 shadow-[0_8px_30px_rgba(0,0,0,0.12)] border-2 border-pink-200"
+        >
+          <div class="flex gap-8 items-center text-2xl">
+            <a href="#home" class="relative" style="font-family: Caveat, cursive;">
+                <span class="text-gray-700 hover:text-pink-400 transition-colors cursor-pointer block">home</span>
+            </a>
+            <a href="#about" class="relative" style="font-family: Caveat, cursive;">
+                <span class="text-gray-700 hover:text-pink-400 transition-colors cursor-pointer block">about</span>
+            </a>
+
+            <a href="#portfolio" class="relative" style="font-family: Caveat, cursive;">
+                <span class="text-gray-700 hover:text-pink-400 transition-colors cursor-pointer block">portfolio</span>
+            </a>
+           <a href="#contact" class="relative" style="font-family: Caveat, cursive;">
+                <span class="text-gray-700 hover:text-pink-400 transition-colors cursor-pointer block">contact</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <!-- MAIN -->
+      <main class="relative z-10">
+        <!-- HERO / HOME -->
+        <section
+          id="home"
+          class="min-h-screen flex items-center justify-center pt-24 px-4 md:px-8 relative"
+        >
+          <div class="container w-max">
+            <div class="relative scroll-reveal">
+              <div
+                class="relative bg-[#f9f5f0] rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.15)] overflow-visible border-4 border-white"
+              >
+                <!-- tape strips -->
+                <div
+                  class="absolute left-0 w-24 h-8 bg-pink-200/40 -rotate-12 shadow-sm"
+                ></div>
+                <div
+                  class="absolute right-12 w-24 h-8 bg-purple-200/40 rotate-12 z-20 shadow-sm"
+                ></div>
+
+                <div class="grid md:grid-cols-2 gap-8 relative">
+                  <!-- left text -->
+                  <div
+                    class="md:p-24 flex flex-col justify-center space-y-6"
+                  >
+                    <p
+                      class="text-gray-600 text-2xl"
+                      style="font-family: 'Caveat', cursive;"
+                    >
+                      Hi there! I'm
+                    </p>
+
+                    <div>
+                      <h1
+                        class="text-4xl md:text-5xl lg:text-6xl gradient-name leading-tight"
+                        style="font-family: 'Fredoka One', cursive;"
+                      >
+                        Jamie Yang
+                      </h1>
+                    </div>
+                    <div
+                      class="space-y-3"
+                      style="font-family: 'Caveat', cursive;"
+                    >
+                      <p class="text-gray-700 text-3xl">
+                        UI/UX & Design
+                      </p>
+                      <p class="text-gray-600 max-w-2xl text-2xl">
+                        Creating beautiful designs and bringing creative visions
+                        to life through design and motion.
+                      </p>
+                    </div>
+                  </div>
+
+                  <!-- right stacked photos -->
+                  <div
+                    class="relative p-8 md:p-12 flex items-center justify-center"
+                  >
+                    <div class="relative w-80 max-w-md aspect-[3/4]">
+                      <!-- top card (active) -->
+                      <div
+                        class="absolute inset-0 bg-white p-4 rounded-3xl shadow-2xl border-4 border-white hover-tilt"
+                      >
+                        <div
+                          class="w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br from-pink-200 to-purple-200 relative"
+                        >
+                          <img
+                            src="img/2.jpeg"
+                            alt="Photo 1"
+                            class="w-full h-full object-cover"
+                          />
+                          <div
+                            class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6"
+                          >
+                            <p
+                              class="text-white text-xl"
+                              style="font-family: 'Caveat', cursive;"
+                            >
+                              Creating with passion
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- other stacked cards -->
+                      <div
+                        class="absolute inset-0 bg-white p-4 rounded-3xl shadow-2xl border-4 border-white pointer-events-none"
+                        style="transform: translateY(-12px) scale(0.97) rotate(-3deg);"
+                      >
+                        <div
+                          class="w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br from-pink-200 to-purple-200 relative"
+                        >
+                          <img
+                            src="img/1.jpeg"
+                            alt="Photo 2"
+                            class="w-full h-full object-cover"
+                          />
+                        </div>
+                      </div>
+
+                      <div
+                        class="absolute inset-0 bg-white p-4 rounded-3xl shadow-2xl border-4 border-white pointer-events-none"
+                        style="transform: translateY(-24px) scale(0.94) rotate(-6deg);"
+                      >
+                        <div
+                          class="w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br from-pink-200 to-purple-200 relative"
+                        >
+                          <img
+                            src="img/4.JEPG"
+                            alt="Photo 3"
+                            class="w-full h-full object-cover"
+                          />
+                        </div>
+                      </div>
+
+                      <div
+                        class="absolute inset-0 bg-white p-4 rounded-3xl shadow-2xl border-4 border-white pointer-events-none"
+                        style="transform: translateY(-36px) scale(0.91) rotate(-9deg);"
+                      >
+                        <div
+                          class="w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br from-pink-200 to-purple-200 relative"
+                        >
+                          <img
+                            src="img/3.jpg"
+                            alt="Photo 4"
+                            class="w-full h-full object-cover"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- end right -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ABOUT -->
+        <!-- <section id="about" class="py-24 px-4 md:px-8 relative">
+          <div class="container mx-auto max-w-7xl">
+            <div class="mb-12 text-center scroll-reveal">
+              <h2
+                class="text-pink-400 text-3xl"
+                style="font-family: 'Fredoka One', cursive;"
+              >
+                about me
+              </h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-start"> -->
+              <!-- left: text + collage -->
+              <!-- <div class="space-y-8 scroll-reveal">
+                <div
+                  class="bg-[#faf7f4] p-8 rounded-3xl border-4 border-white shadow-[0_15px_50px_rgba(0,0,0,0.1)] relative"
+                >
+                  <div
+                    class="absolute -top-4 left-12 w-24 h-8 bg-pink-200/50 -rotate-6 shadow-sm"
+                  ></div>
+
+                  <h3
+                    class="text-2xl text-gray-700 mb-4"
+                    style="font-family: 'Caveat', cursive;"
+                  >
+                    My Creative Journey
+                  </h3>
+                  <p class="text-gray-600">
+                    I'm a passionate designer who loves creating beautiful
+                    visuals that tell stories. With experience in graphic design
+                    and video editing, I bring ideas to life through thoughtful
+                    design and creativity.
+                  </p>
+
+                  <div class="relative pt-10">
+                    <div
+                      class="mt-32 bg-pink-50 p-6 rounded-2xl"
+                      style="font-family: 'Caveat', cursive;"
+                    >
+                      <p class="text-gray-600">
+                        I believe that great design comes from understanding
+                        people and creating visuals that resonate. Every project
+                        is an opportunity to learn and grow.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="bg-purple-50 p-6 rounded-2xl scroll-reveal"
+                  style="font-family: 'Caveat', cursive;"
+                >
+                  <p class="text-gray-600">
+                    "I love the art of design and connecting with people through
+                    beautiful visuals. Let me share my passion for creating
+                    meaningful experiences."
+                  </p>
+                </div>
+              </div> -->
+
+              <!-- right: 2x2 gallery -->
+<!--               <div
+                class="grid grid-cols-2 gap-4 scroll-reveal"
+                style="font-family: 'Caveat', cursive;"
+              >
+                <div
+                  class="bg-white p-3 shadow-xl rounded-lg hover-tilt cursor-pointer"
+                >
+                  <div
+                    class="aspect-square bg-gradient-to-br from-purple-200 to-pink-200 rounded-lg overflow-hidden"
+                  >
+                    <img
+                      src="assets/gallery1.jpg"
+                      class="w-full h-full object-cover"
+                      alt="creativity"
+                    />
+                  </div>
+                  <p class="text-center mt-2 text-gray-600 text-sm">
+                    creativity
+                  </p>
+                </div>
+
+                <div
+                  class="bg-white p-3 shadow-xl rounded-lg hover-tilt cursor-pointer"
+                >
+                  <div
+                    class="aspect-square bg-gradient-to-br from-purple-200 to-pink-200 rounded-lg overflow-hidden"
+                  >
+                    <img
+                      src="assets/gallery2.jpg"
+                      class="w-full h-full object-cover"
+                      alt="design"
+                    />
+                  </div>
+                  <p class="text-center mt-2 text-gray-600 text-sm">
+                    design
+                  </p>
+                </div>
+
+                <div
+                  class="bg-white p-3 shadow-xl rounded-lg hover-tilt cursor-pointer"
+                >
+                  <div
+                    class="aspect-square bg-gradient-to-br from-purple-200 to-pink-200 rounded-lg overflow-hidden"
+                  >
+                    <img
+                      src="assets/gallery3.jpg"
+                      class="w-full h-full object-cover"
+                      alt="passion"
+                    />
+                  </div>
+                  <p class="text-center mt-2 text-gray-600 text-sm">
+                    passion
+                  </p>
+                </div>
+
+                <div
+                  class="bg-white p-3 shadow-xl rounded-lg hover-tilt cursor-pointer"
+                >
+                  <div
+                    class="aspect-square bg-gradient-to-br from-purple-200 to-pink-200 rounded-lg overflow-hidden"
+                  >
+                    <img
+                      src="assets/gallery4.jpg"
+                      class="w-full h-full object-cover"
+                      alt="inspiration"
+                    />
+                  </div>
+                  <p class="text-center mt-2 text-gray-600 text-sm">
+                    inspiration
+                  </p>
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </section>
+
+        <!-- about me -->
+        <section id="about" class="py-24 px-6 md:px-12 bg-[#f5f1ed]">
+  <div class="container mx-auto max-w-7xl">
+            <div class="mb-12 text-center scroll-reveal">
+              <h2
+                class="text-pink-400 text-3xl"
+                style="font-family: 'Fredoka One', cursive;"
+              >
+                about me
+              </h2>
+            </div>
+<div class="container mx-auto max-w-7xl grid md:grid-cols-2 gap-8">
+
+    <!-- LEFT CARD -->
+    <div class="relative bg-[#fffafc] rounded-3xl border-4 border-pink-100 shadow-[0_15px_40px_rgba(0,0,0,0.08)] p-8 md:p-12 transition-all duration-500 hover:-translate-y-2">
+      <!-- Tape -->
+      <div class="absolute -top-4 left-16 w-24 h-6 bg-pink-200/70 rotate-[-5deg] rounded-sm"></div>
+      <h3
+        class="text-4xl text-gray-700 mb-4"
+        style="font-family: 'Caveat', cursive;"
+      >
+        My Creative Journey
+      </h3>
+      <br>
+      <p class="text-gray-600 text-lg">
+                    I'm a passionate designer who loves creating beautiful
+                    visuals that tell stories. With experience in graphic design
+                    and video editing, I bring ideas to life through thoughtful
+                    design and creativity.
+        </p>
+        <br>
+        <p class="text-gray-600 text-lg">
+                        I believe that great design comes from understanding
+                        people and creating visuals that resonate. Every project
+                        is an opportunity to learn and grow.
+                      </p>
+        <br>
+        <p class="text-gray-600 text-lg">
+                        I believe that great design comes from understanding
+                        people and creating visuals that resonate. Every project
+                        is an opportunity to learn and grow.
+                      </p>
+                      <br>
+    </div>
+
+    <!-- RIGHT CARD -->
+    <div class="relative bg-[#fffdfd] rounded-3xl border-4 border-purple-100 shadow-[0_15px_40px_rgba(0,0,0,0.08)] p-8 md:p-12 transition-all duration-500 hover:-translate-y-2">
+      <!-- Tape -->
+      <div class="absolute -top-4 right-16 w-24 h-6 bg-purple-200/70 rotate-[5deg] rounded-sm"></div>
+
+      <!-- Header -->
+      <h3 class="text-gray-800 mb-6 italic text-4xl" style="font-family: 'Caveat', cursive;">Tools & Skills</h3>
+
+      <!-- Skills List -->
+      <div class="bg-pink-50 p-6 rounded-2xl space-y-4 shadow-inner">
+        <!-- Skill -->
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 bg-pink-300 rounded-full flex items-center justify-center text-white text-lg">✓</div>
+          <div>
+            <p class="font-semibold text-gray-800 italic text-3xl" style="font-family: 'Caveat', cursive;">Figma</p>
+            <p class="text-gray-600 text-lg">Where my ideas come alive</p>
+          </div>
+        </div>
+        <!-- Skill -->
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 bg-purple-300 rounded-full flex items-center justify-center text-white text-lg">✓</div>
+          <div>
+            <p class="font-semibold text-gray-800 italic text-3xl" style="font-family: 'Caveat', cursive;">Canva</p>
+            <p class="text-gray-600 text-lg">Fast designs for everyday creativity</p>
+          </div>
+        </div>
+        <!-- Skill -->
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 bg-blue-300 rounded-full flex items-center justify-center text-white text-lg">✓</div>
+          <div>
+            <p class="font-semibold text-gray-800 italic text-3xl" style="font-family: 'Caveat', cursive;">Visual Studio Code</p>
+            <p class="text-gray-600 text-lg">My space to build things</p>
+          </div>
+        </div>
+        <!-- Skill -->
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 bg-green-300 rounded-full flex items-center justify-center text-white text-lg">✓</div>
+          <div>
+            <p class="font-semibold text-gray-800 italic text-3xl" style="font-family: 'Caveat', cursive;"> Adobe XD</p>
+            <p class="text-gray-600 text-lg">STurning concepts into real experiences</p>
+          </div>
+        </div>
+        <!-- Skill -->
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 bg-yellow-300 rounded-full flex items-center justify-center text-white text-lg">✓</div>
+          <div>
+            <p class="font-semibold text-gray-800 italic text-3xl" style="font-family: 'Caveat', cursive;"> Adobe Photoshop</p>
+            <p class="text-gray-600 text-lg">Crafting visuals with detail and care</p>
+          </div>
+        </div>
+      </div>
+      <!-- Polaroid Grid -->
+      <!-- <div class="grid grid-cols-2 gap-6 mb-8">
+        <div class="bg-white p-2 shadow-xl border border-white rounded-lg rotate-[-3deg] hover:rotate-0 transition-transform duration-500">
+          <div class="aspect-square bg-gradient-to-br from-pink-200 to-purple-200 rounded-md overflow-hidden">
+            <img src="assets/work1.jpg" alt="Work 1" class="w-full h-full object-cover" />
+          </div>
+        </div>
+        <div class="bg-white p-2 shadow-xl border border-white rounded-lg rotate-[3deg] hover:rotate-0 transition-transform duration-500">
+          <div class="aspect-square bg-gradient-to-br from-pink-200 to-purple-200 rounded-md overflow-hidden">
+            <img src="assets/work2.jpg" alt="Work 2" class="w-full h-full object-cover" />
+          </div>
+        </div>
+        <div class="bg-white p-2 shadow-xl border border-white rounded-lg rotate-[-2deg] hover:rotate-0 transition-transform duration-500">
+          <div class="aspect-square bg-gradient-to-br from-pink-200 to-purple-200 rounded-md overflow-hidden">
+            <img src="assets/work3.jpg" alt="Work 3" class="w-full h-full object-cover" />
+          </div>
+        </div>
+        <div class="bg-white p-2 shadow-xl border border-white rounded-lg rotate-[2deg] hover:rotate-0 transition-transform duration-500">
+          <div class="aspect-square bg-gradient-to-br from-pink-200 to-purple-200 rounded-md overflow-hidden">
+            <img src="assets/work4.jpg" alt="Work 4" class="w-full h-full object-cover" />
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</section>
+
+        <!-- PORTFOLIO -->
+        <section id="portfolio" class="py-24 px-6 md:px-12 bg-[#f5f1ed]">
+<div class="container mx-auto max-w-7xl">
+            <div class="mb-12 text-center scroll-reveal">
+              <h2
+                class="text-pink-400 text-3xl"
+                style="font-family: 'Fredoka One', cursive;"
+              >
+                projects
+              </h2>
+              <p
+                class="mt-4 text-gray-600 text-3xl"
+                style="font-family: 'Caveat', cursive;"
+              >
+                A selection of my recent work
+              </p>
+            </div>
+  <div class="container mx-auto max-w-7xl space-y-16">
+
+    <!-- FIRST ROW: BRAND DESIGN & MARKETING -->
+    <div class="relative bg-gradient-to-br from-pink-50 to-purple-50 border-4 border-white rounded-3xl shadow-[0_15px_40px_rgba(0,0,0,0.1)] p-8 md:p-14 transition-all duration-500 hover:-translate-y-2">
+      <div class="absolute -top-4 left-12 w-24 h-6 bg-yellow-200/70 rotate-[-4deg] rounded-sm"></div>
+      <div class="absolute -top-4 right-12 w-24 h-6 bg-pink-200/70 rotate-[4deg] rounded-sm"></div>
+
+      <!-- <h3 class="text-gray-800 italic mb-8 text-lg md:text-xl" style="font-family:'Caveat', cursive;">Brand Design & Marketing</h3> -->
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-10 justify-items-center">
+        <!-- Polaroid Card -->
+        <div class="bg-white border border-white shadow-xl p-3 rounded-lg rotate-[-3deg] hover:rotate-0 transition-transform duration-500">
+          <div class="w-[200px] md:w-[240px] aspect-square rounded-md bg-gradient-to-br from-purple-200 to-pink-200 overflow-hidden">
+            <a href="reverie.html">
+              <img src="img/splash screen.png" alt="Project 1" class="w-full h-full object-cover">
+            </a>
+          </div>
+          <p class="text-center mt-3 text-gray-700 text-3xl italic" style="font-family:'Caveat', cursive;">reverie</p>
+        </div>
+
+        <div class="bg-white border border-white shadow-xl p-3 rounded-lg rotate-[3deg] hover:rotate-0 transition-transform duration-500">
+          <div class="w-[200px] md:w-[240px] aspect-square rounded-md bg-gradient-to-br from-purple-200 to-pink-200 overflow-hidden">
+            <img src="img/Baggoo Logo 2.png" alt="Project 2" class="w-full h-full object-cover">
+          </div>
+          <p class="text-center mt-3 text-gray-700 text-3xl italic" style="font-family:'Caveat', cursive;">baggoo</p>
+        </div>
+
+        <div class="bg-white border border-white shadow-xl p-3 rounded-lg rotate-[-2deg] hover:rotate-0 transition-transform duration-500">
+          <div class="w-[200px] md:w-[240px] aspect-square rounded-md bg-gradient-to-br from-purple-200 to-pink-200 overflow-hidden">
+            <img src="assets/project0-2.jpg" alt="Project 3" class="w-full h-full object-cover">
+          </div>
+          <p class="text-center mt-3 text-gray-700 text-3xl italic" style="font-family:'Caveat', cursive;">project 3</p>
+        </div>
+
+        <div class="bg-white border border-white shadow-xl p-3 rounded-lg rotate-[2deg] hover:rotate-0 transition-transform duration-500">
+          <div class="w-[200px] md:w-[240px] aspect-square rounded-md bg-gradient-to-br from-purple-200 to-pink-200 overflow-hidden">
+            <img src="assets/project0-3.jpg" alt="Project 4" class="w-full h-full object-cover">
+          </div>
+          <p class="text-center mt-3 text-gray-700 text-3xl italic" style="font-family:'Caveat', cursive;">project 4</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECOND ROW: ILLUSTRATION & VISUAL STORYTELLING -->
+<!--     <div class="relative bg-gradient-to-br from-purple-50 to-green-50 border-4 border-white rounded-3xl shadow-[0_15px_40px_rgba(0,0,0,0.1)] p-8 md:p-14 transition-all duration-500 hover:-translate-y-2">
+      <div class="absolute -top-4 left-12 w-24 h-6 bg-yellow-200/70 rotate-[-4deg] rounded-sm"></div>
+      <div class="absolute -top-4 right-12 w-24 h-6 bg-pink-200/70 rotate-[4deg] rounded-sm"></div>
+
+      <h3 class="text-gray-800 italic mb-8 text-lg md:text-xl" style="font-family:'Caveat', cursive;">Illustration & Visual Storytelling</h3>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-10 justify-items-center">
+        <div class="bg-white border border-white shadow-xl p-3 rounded-lg rotate-[-3deg] hover:rotate-0 transition-transform duration-500">
+          <div class="w-[200px] md:w-[240px] aspect-square rounded-md bg-gradient-to-br from-purple-200 to-pink-200 overflow-hidden">
+            <img src="assets/project1-0.jpg" alt="Project 1" class="w-full h-full object-cover">
+          </div>
+          <p class="text-center mt-3 text-gray-700 text-sm italic" style="font-family:'Caveat', cursive;">project 1</p>
+        </div>
+
+        <div class="bg-white border border-white shadow-xl p-3 rounded-lg rotate-[3deg] hover:rotate-0 transition-transform duration-500">
+          <div class="w-[200px] md:w-[240px] aspect-square rounded-md bg-gradient-to-br from-purple-200 to-pink-200 overflow-hidden">
+            <img src="assets/project1-1.jpg" alt="Project 2" class="w-full h-full object-cover">
+          </div>
+          <p class="text-center mt-3 text-gray-700 text-sm italic" style="font-family:'Caveat', cursive;">project 2</p>
+        </div>
+
+        <div class="bg-white border border-white shadow-xl p-3 rounded-lg rotate-[-2deg] hover:rotate-0 transition-transform duration-500">
+          <div class="w-[200px] md:w-[240px] aspect-square rounded-md bg-gradient-to-br from-purple-200 to-pink-200 overflow-hidden">
+            <img src="assets/project1-2.jpg" alt="Project 3" class="w-full h-full object-cover">
+          </div>
+          <p class="text-center mt-3 text-gray-700 text-sm italic" style="font-family:'Caveat', cursive;">project 3</p>
+        </div>
+
+        <div class="bg-white border border-white shadow-xl p-3 rounded-lg rotate-[2deg] hover:rotate-0 transition-transform duration-500">
+          <div class="w-[200px] md:w-[240px] aspect-square rounded-md bg-gradient-to-br from-purple-200 to-pink-200 overflow-hidden">
+            <img src="assets/project1-3.jpg" alt="Project 4" class="w-full h-full object-cover">
+          </div>
+          <p class="text-center mt-3 text-gray-700 text-sm italic" style="font-family:'Caveat', cursive;">project 4</p>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</section>
+
+
+
+        <!-- CONTACT -->
+        <section
+          id="contact"
+          class="py-24 px-4 md:px-8 relative mb-16 scroll-reveal"
+        >
+          <div class="container mx-auto max-w-5xl">
+            <div
+              class="bg-gradient-to-br from-pink-100 via-purple-100 to-green-100 p-12 md:p-16 rounded-3xl shadow-[0_25px_70px_rgba(0,0,0,0.15)] border-4 border-white relative overflow-hidden"
+            >
+              <div
+                class="absolute top-8 left-12 w-32 h-10 bg-pink-200/50 -rotate-6 shadow-sm"
+              ></div>
+              <div
+                class="absolute top-12 right-16 w-24 h-10 bg-purple-200/50 rotate-12 shadow-sm"
+              ></div>
+
+              <div class="relative z-10 text-center">
+                <div class="mb-8">
+                  <h2
+                    class="text-pink-400 mb-4 text-3xl"
+                    style="font-family: 'Fredoka One', cursive;"
+                  >
+                    let's connect
+                  </h2>
+                </div>
+
+                <div
+                  class="bg-white/90 backdrop-blur-sm p-8 rounded-3xl shadow-xl max-w-3xl mx-auto contact-card"
+                  style="font-family: 'Caveat', cursive;"
+                >
+                  <p class="text-gray-600 mb-8 text-2xl">
+                    I'd love to hear from you! Whether you have a project in
+                    mind or just want to chat about design, feel free to reach
+                    out.
+                  </p>
+
+                  <div class="flex justify-center gap-6 mb-8">
+                    <a
+                      href="mailto:jy4474@nyu.edu"
+                      class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-lg"
+                    >
+                    <img src="img/gmail.png" alt="gmail logo" class="square-image">
+                    </a>
+                    <a
+                      href="https://instagram.com/jamiee.yang"
+                      target="_blank"
+                      class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-lg"
+                    >
+                    <img src="img/instagram.png" alt="instagram logo" class="square-image">
+                    </a>
+                    <a
+                      href="https://linkedin.com/in/jamie-yang-285794292"
+                      target="_blank"
+                      class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-lg"
+                    >
+                    <img src="img/linkedin.png" alt="linkedin logo" class="square-image">
+                    </a>
+                    <a
+                      href="https://linkedin.com/"
+                      target="_blank"
+                      class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-lg"
+                    >
+                    <img src="img/github.png" alt="github logo" class="square-image">
+                    </a>
+                  </div>
+
+                  <div class="space-y-2 text-gray-600 text-2xl">
+                    <p>jy4474@nyu.edu</p>
+                    <p>101 Johnson St, Brooklyn, NY, 11201</p>
+                    <p>917-626-3881</p>
+                  </div>
+
+                  <div
+                    class="mt-6 inline-block bg-yellow-200 px-4 py-2 rounded-full shadow-lg border-2 border-yellow-300"
+                  >
+                    <p class="text-gray-700 text-lg">
+                      thanks for stopping by! 💫
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="text-center mt-10 text-gray-600 text-sm scroll-reveal"
+              style="font-family: 'Caveat', cursive;"
+            >
+              © 2025 Jamie Yang. Made with love and creativity ✨ </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Plain JS (no modules, no React) -->
+    <script src="main.js" defer></script>
+  </body>
+</html>

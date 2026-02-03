@@ -1,0 +1,291 @@
+html {
+  scroll-behavior: smooth;
+}
+
+/* gradient name like your bubble text */
+.gradient-name {
+  background: linear-gradient(120deg, #f9a8d4, #ec4899);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* nav links */
+.nav-link {
+  color: #4b5563;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.nav-link:hover {
+  color: #f472b6;
+  transform: translateY(-1px);
+}
+
+square-image {
+  width: 100px;  /* Control the display width */
+  height: auto;  /* Maintain the aspect ratio if the original image is square */
+}
+
+
+/* RESET */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #fffaf6;
+  font-family: "Caveat", cursive;
+  color: #444;
+  line-height: 1.6;
+}
+
+
+/* LAYOUT */
+.case-study {
+  padding: 80px 20px;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+}
+
+
+/* BACK BUTTON */
+.back-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: white;
+  border-radius: 40px;
+  border: 2px solid #ffd1dc;
+  text-decoration: none;
+  color: #555;
+  margin-bottom: 40px;
+  transition: .2s;
+}
+
+.back-btn:hover {
+  background: #ffeaf2;
+}
+
+
+/* HERO */
+.hero-card {
+  background: white;
+  padding: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.12);
+  transform: rotate(-1deg);
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.hero-card img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.caption {
+  text-align: center;
+  margin-top: 10px;
+  color: #666;
+}
+
+/* tape */
+.tape {
+  position: absolute;
+  width: 120px;
+  height: 28px;
+  opacity: .6;
+  top: -12px;
+}
+
+.tape.left {
+  background: #ffe9a9;
+  left: 50px;
+  transform: rotate(-12deg);
+}
+
+.tape.right {
+  background: #ffd1dc;
+  right: 50px;
+  transform: rotate(8deg);
+}
+
+
+/* TITLE */
+.title h1 {
+  font-family: "Fredoka One";
+  color: #ff8fb1;
+  font-size: 56px;
+}
+
+.title p {
+  font-size: 22px;
+}
+
+
+/* META */
+.meta-card {
+  display: flex;
+  gap: 30px;
+  background: linear-gradient(135deg,#f3e8ff,#ffe4f0);
+  padding: 25px;
+  border-radius: 20px;
+  margin: 40px 0;
+}
+
+.meta-item {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+
+/* SECTIONS */
+.section {
+  margin: 70px 0;
+}
+
+.section h2 {
+  font-family: "Fredoka One";
+  color: #ff8fb1;
+  margin-bottom: 20px;
+}
+
+.purple {
+  color: #9b7df2;
+}
+
+
+/* CARDS */
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(0,0,0,.08);
+}
+
+
+/* CHALLENGES */
+.challenge-list {
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+
+
+/* GRID */
+.grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+}
+
+.grid img {
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 12px 25px rgba(0,0,0,.12);
+  transition: .25s;
+}
+
+.grid img:hover {
+  transform: scale(1.05);
+}
+
+
+/* RESULTS */
+.results {
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.results h3 {
+  font-family: "Fredoka One";
+  color: #ff8fb1;
+  font-size: 36px;
+}
+
+
+/* SIMPLE FADE ANIMATION */
+.fade-in {
+  opacity: 0;
+  animation: fadeUp .8s forwards;
+}
+
+.delay-1 { animation-delay: .1s }
+.delay-2 { animation-delay: .2s }
+.delay-3 { animation-delay: .3s }
+.delay-4 { animation-delay: .4s }
+.delay-5 { animation-delay: .5s }
+.delay-6 { animation-delay: .6s }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* scroll reveal */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+
+/* hover tilt & interactive effects */
+.hover-tilt {
+  transform-style: preserve-3d;
+  transform-origin: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* floating background icons */
+.float-slow {
+  animation: float 6s ease-in-out infinite;
+}
+.float-slow.delay-1 {
+  animation-delay: 1s;
+}
+.float-slow.delay-2 {
+  animation-delay: 2s;
+}
+.float-slow.delay-3 {
+  animation-delay: 3s;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+#portfolio img {
+  transition: transform 0.5s ease;
+}
+#portfolio img:hover {
+  transform: scale(1.05);
+}
+#portfolio .shadow-xl {
+  transition: all 0.5s ease;
+}
+
+#skills img {
+  transition: transform 0.4s ease;
+}
+#skills img:hover {
+  transform: scale(1.05);
+}
+#skills .shadow-xl {
+  transition: all 0.4s ease;
+}
+#skills .hover\\:-translate-y-2:hover {
+  transform: translateY(-8px);
+}
+
