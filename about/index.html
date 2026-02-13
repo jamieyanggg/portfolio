@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Jamie Yang</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" type="image/x-icon" href="../img/favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <!-- Main Navigation -->
+      <nav id="navbar">
+    <div class="nav-left">
+        <!-- Replace with your personal icon later -->
+        <img src="img/logo.png" alt="Personal Icon" class="logo" />
+    </div>
+
+    <div class="nav-right">
+        <span class="vline"></span>
+        <a href="../index.html">HOME</a>
+        <span class="vline"></span>
+        <a href="index.html">ABOUT</a>
+        <span class="vline"></span>
+        <a href="../contact/index.html">CONTACT</a>
+    </div>
+    </nav>
+    
+    <div class="wrapper">
+        <div class="controls-btn">
+            <div class="next-wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" style="transform: rotate(180deg);" viewBox="0 0 24 24"
+                    width="24" height="24" class="next">
+                    <path d="M9 18v-5l8 5V6l-8 5V6H7v12z"></path>
+                </svg>
+            </div>
+            <div class="last-wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="last">
+                    <path d="M9 18v-5l8 5V6l-8 5V6H7v12z"></path>
+                </svg>
+            </div>
+        </div>
+        <div class="describe">
+        </div>
+        <div class="card-slide">
+        </div>
+    </div>
+
+    <script src="./data.js"></script>
+    <script>
+        const dwellPosition = window.innerWidth
+        const cardSlide = document.querySelector('.card-slide')
+        const describe = document.querySelector('.describe')
+        const nextWrapper = document.querySelector('.next-wrapper')
+        const lastWrapper = document.querySelector('.last-wrapper')
+        const last = document.querySelector('.last')
+        let cardStackWrapper
+        let cardFlagArray = []
+        let draggedElement = null;
+        const bgColor = ['255,208,213', '164,201,216', '255,188,75']
+        
+        function dragMouseDown(e) {
+            isDragging = true;
+            e = e || window.event;
+            e.preventDefault();
+            draggedElement = e.target
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            draggedElement.classList.remove('card-stack-wrapper-animating-DMU')
+            document.onmouseup = closeDragElement;
+            document.onmousemove = elementDrag;
+        }
+      
+        function elementDrag(e) {
+            e = e || window.event;
+            e.preventDefault();
+            draggedElement.style.transition = ''
+            pos1 = pos3 - e.clientX;
+            pos2 = pos4 - e.clientY;
+            pos3 = e.clientX;
+            pos4 = e.clientY;
+            const moveLegth = draggedElement.offsetLeft - pos1
+            draggedElement.style.transform = `rotateX(0) rotateY(0) rotateZ(${moveLegth / dwellPosition * 10}deg) scale(1)`
+            draggedElement.style.left = moveLegth + "px";
+        }
+       
+        function closeDragElement(e) {
+            draggedElement.style.transition = '.5s ease'
+            document.onmouseup = null;
+            document.onmousemove = null;
+           
+            if (Number(draggedElement.style.left.replace("px", "")) > 200 || Number(draggedElement.style.left.replace("px", "")) < -200) {
+                
+                Number(draggedElement.style.left.replace("px", "")) > 0 ? draggedElement.style.left = dwellPosition + 'px' : draggedElement.style.left = -dwellPosition + 'px';
+                moveFun()
+            }
+
+            else {
+                draggedElement.style.left = "0";
+            }
+        }
+       
+        function moveFun() {
+            
+            cardFlagArray.unshift(cardStackWrapper.pop())
+            
+            if (cardStackWrapper.length) {
+                
+                describe.classList.remove('describe-appear-animation')
+                describe.classList.add('describe-disappear-animation')
+                draggedElement.style.boxShadow = ''
+                setTimeout(() => {
+                    describe.innerHTML = `<div class="tips">${cardInfo[cardStackWrapper.length - 1].tips}</div>
+                                  <div class="contnet-text">${cardInfo[cardStackWrapper.length - 1].contnetText}</div>`
+                    document.body.style.background = `rgb(${cardInfo[cardStackWrapper.length - 1].bgColor})`
+                    cardStackWrapper[cardStackWrapper.length - 1].style.transition = '.5s ease'
+                    cardStackWrapper[cardStackWrapper.length - 1].style.transform = 'rotateX(0) rotateY(0) rotateZ(0) scale(1)'
+                    cardStackWrapper[cardStackWrapper.length - 1].style.boxShadow = '2px 5px 27px rgba(0, 0, 0, 0.32)'
+                    describe.classList.add('describe-appear-animation')
+                    describe.classList.remove('describe-disappear-animation')
+                }, 500)
+
+            } else {
+                
+                cardStackWrapper = cardFlagArray
+                cardFlagArray = []
+                
+                describe.classList.remove('describe-appear-animation')
+                describe.classList.add('describe-disappear-animation')
+                setTimeout(() => {
+                    describe.innerHTML = `<div class="tips">${cardInfo[cardStackWrapper.length - 1].tips}</div>
+                                  <div class="contnet-text">${cardInfo[cardStackWrapper.length - 1].contnetText}</div>`
+                    document.body.style.background = `rgb(${cardInfo[cardStackWrapper.length - 1].bgColor})`
+                    describe.classList.add('describe-appear-animation')
+                    describe.classList.remove('describe-disappear-animation')
+                    cardStackWrapper.forEach((dom, index) => {
+                        
+                        if (index !== cardStackWrapper.length - 1) {
+                            dom.style.transform = 'rotateX(5deg) rotateY(0.438122deg) rotateZ(4.38122deg) scale(1)'
+                        } else {
+                            dom.style.transform = ''
+                        }
+                        dom.style.transition = `.${5 + index}s`
+                        dom.style.left = 0
+                    })
+                }, 500)
+            }
+            lastBtnColor()
+        }
+        function nextFun() {
+            draggedElement = cardStackWrapper[cardStackWrapper.length - 1]
+            draggedElement.style.transition = '.5s ease'
+            draggedElement.style.left = dwellPosition + 'px';
+            moveFun()
+            lastBtnColor()
+        }
+        function lastFun() {
+            if (cardFlagArray.length) {
+                cardStackWrapper.push(cardFlagArray.shift())
+                draggedElement = cardStackWrapper[cardStackWrapper.length - 1]
+                draggedElement.style.transition = '.5s ease'
+                draggedElement.style.left = "0";
+                lastBtnColor()
+            }
+        }
+        function lastBtnColor() {
+            if (!cardFlagArray.length) {
+                last.style.fill = 'rgba(255,255,255,0.6)'
+            } else {
+                last.style.fill = 'rgba(0,0,0,1)'
+            }
+        }
+        // init function
+        function init() {
+          
+            cardInfo.forEach(item => {
+                const cardHtml = `<div class="card-stack-wrapper" style='background-image: url(${item.imgUrl});transform:rotateX(5deg) rotateY(0.438122deg) rotateZ(${Math.floor(Math.random() * 9 + 2)}deg) scale(1)'></div>`
+                cardSlide.innerHTML += cardHtml;
+            })
+            cardStackWrapper = Array.apply(null, document.querySelectorAll('.card-stack-wrapper'))
+            
+            describe.innerHTML = `<div class="tips">${cardInfo[cardStackWrapper.length - 1].tips}</div>
+                                  <div class="contnet-text">${cardInfo[cardStackWrapper.length - 1].contnetText}</div>`
+            document.body.style.background = `rgb(${cardInfo[cardStackWrapper.length - 1].bgColor})`
+            
+            cardStackWrapper.forEach(dom => {
+                dom.onmousedown = dragMouseDown
+            })
+            nextWrapper.onclick = nextFun
+            lastWrapper.onclick = lastFun
+        }
+        init()
+    </script>
+    
+    
+    
+
+    
+</body>
+
+</html>

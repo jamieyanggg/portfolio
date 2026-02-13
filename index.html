@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jamie Yang</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Main Navigation -->
+        <nav id="navbar">
+    <div class="nav-left">
+        <!-- Replace with your personal icon later -->
+        <img src="img/logo.png" alt="Personal Icon" class="logo" />
+    </div>
+
+    <div class="nav-right">
+        <span class="vline"></span>
+        <a href="index.html">HOME</a>
+        <span class="vline"></span>
+        <a href="about/index.html">ABOUT</a>
+        <span class="vline"></span>
+        <a href="contact/index.html">CONTACT</a>
+    </div>
+    </nav>
+        <!-- animated typewriter -->
+    <section class="hero">
+
+  <div class="content">
+    <div class="typewriter-wrapper">
+      <div id="text"></div>
+    </div>
+  </div>
+
+  <!-- About section goes here -->
+  <section class="about-section">
+    <div class="about-intro">
+      <p>
+        Creating beautiful designs and bringing creative visions to life through design and motion.
+      </p>
+    </div>
+
+    <div class="value-grid">
+      <div class="value-card">
+        <div class="value-icon">✨</div>
+        <h3>Detail-Oriented</h3>
+        <p>Every pixel matters in creating polished experiences.</p>
+      </div>
+
+      <div class="value-card">
+        <div class="value-icon">💗</div>
+        <h3>User-Focused</h3>
+        <p>Empathy drives every design decision I make.</p>
+      </div>
+
+      <div class="value-card">
+        <div class="value-icon">💡</div>
+        <h3>Problem Solver</h3>
+        <p>Finding elegant solutions to complex challenges.</p>
+      </div>
+    </div>
+  </section>
+
+</section>
+
+
+    <script>
+        var str = 'Hi, I am Jamie Yang,\na UX/UI designer based in \nNew York.'
+        var flag = 0
+
+        function styleText(text) {
+            return text
+            .replace(/\n/g, '<br>')
+            .replace(
+                'UX/UI designer',
+                "<span class='highlight'>UX/UI designer</span>"
+                )
+
+        }
+
+        function typing() {
+            let typingDiv = document.getElementById('text')
+
+            if (flag <= str.length) {
+            let currentText = str.slice(0, flag++)
+            typingDiv.innerHTML = styleText(currentText) + `<span class='line'></span>`
+            setTimeout(typing, 100)
+            } else {
+            typingDiv.innerHTML = styleText(str) + `<span class='line'></span>`
+            }
+        }
+
+        typing()
+        </script>
+
+
+
+    <section class="tools-section minimal">
+  <p class="tools-subtitle">The platforms and tools I use to bring ideas to life.</p>
+
+  <div class="tools-grid minimal">
+    <div class="tool-card minimal">
+      <img src="img/figma.png" alt="Figma">
+    </div>
+    <div class="tool-card minimal">
+      <img src="img/notion.png" alt="Notion">
+    </div>
+    <div class="tool-card minimal">
+      <img src="img/creative-cloud.png" alt="Adobe">
+    </div>
+    <div class="tool-card minimal">
+      <img src="img/vscode.svg" alt="VS Code">
+    </div>
+    <div class="tool-card minimal">
+      <img src="img/github.png" alt="Github">
+    </div>
+    <div class="tool-card minimal">
+      <img src="img/canva.png" alt="Canva">
+    </div>
+  </div>
+</section>
+
+    <div id="banner">
+        <div class="img-list img-wrapper">
+            <div class="img-box">
+                <div class="info">
+                    <h3><a href="project6/index.html">Porject 6</a></h3>
+                </div>
+                <img src="./img/1.png" alt="">
+            </div>
+            <div class="img-box">
+                <div class="info">
+                    <h3><a href="project1/index.html">Project 1</a></h3>
+                </div>
+                <img src="./img/2.png" alt="">
+            </div>
+            <div class="img-box">
+                <div class="info">
+                    <h3><a href="project2/index.html">Project 2</a></h3>
+                </div>
+                <img src="./img/3.png" alt="">
+            </div>
+            <div class="img-box">
+                <div class="info">
+                    <h3><a href="project3/index.html">Project 3</a></h3>
+                </div>
+                <img src="./img/4.png" alt="">
+            </div>
+            <div class="img-box">
+                <div class="info">
+                    <h3><a href="project4/index.html">Project 4</a></h3>
+                </div>
+                <img src="./img/5.png" alt="">
+            </div>
+            <div class="img-box" id="last-img-box">
+                <div class="info">
+                    <h3><a href="project5/index.html">Project 5</a></h3>
+                </div>
+                <img src="./img/6.png" alt="">
+            </div>
+        </div>
+    </div>
+
+    <div class="btn-group">
+        <button class="last btn">
+            <svg t="1686471404424" class="icon left" viewBox="0 0 1024 1024" version="1.1"
+                xmlns="http://www.w3.org/2000/svg" p-id="2373" width="128" height="128">
+                <path
+                    d="M862.485 481.154H234.126l203.3-203.3c12.497-12.497 12.497-32.758 0-45.255s-32.758-12.497-45.255 0L135.397 489.373c-12.497 12.497-12.497 32.758 0 45.254l256.774 256.775c6.249 6.248 14.438 9.372 22.627 9.372s16.379-3.124 22.627-9.372c12.497-12.497 12.497-32.759 0-45.255l-203.3-203.301h628.36c17.036 0 30.846-13.81 30.846-30.846s-13.81-30.846-30.846-30.846z"
+                    fill="" p-id="2374"></path>
+            </svg>
+        </button>
+        <button class="next btn">
+            <svg t="1686471404424" class="icon right" viewBox="0 0 1024 1024" version="1.1"
+                xmlns="http://www.w3.org/2000/svg" p-id="2373" width="128" height="128">
+                <path
+                    d="M862.485 481.154H234.126l203.3-203.3c12.497-12.497 12.497-32.758 0-45.255s-32.758-12.497-45.255 0L135.397 489.373c-12.497 12.497-12.497 32.758 0 45.254l256.774 256.775c6.249 6.248 14.438 9.372 22.627 9.372s16.379-3.124 22.627-9.372c12.497-12.497 12.497-32.759 0-45.255l-203.3-203.301h628.36c17.036 0 30.846-13.81 30.846-30.846s-13.81-30.846-30.846-30.846z"
+                    fill="" p-id="2374"></path>
+            </svg>
+        </button>
+    </div>
+     
+    <script>
+        const imgListOne = document.querySelector('.img-list')
+        let imgBoxList = Array.prototype.slice.call(document.querySelectorAll('.img-list .img-box'))
+        const imgBoxCount = imgBoxList.length
+        const root = document.documentElement;
+        const btnGroup = document.querySelector('.btn-group')
+        const lastBtn = document.querySelector('.last')
+        const nextBtn = document.querySelector('.next')
+        const lastImgBox = document.getElementById('last-img-box')
+
+       
+        const postSpacing = Number(getComputedStyle(root).getPropertyValue('--post-spacing').replace("vw", ""));
+        const postSize = Number(getComputedStyle(root).getPropertyValue('--post-size').replace("vw", ""));
+
+        
+        let imgListLength = (postSize + postSpacing) * imgBoxCount
+        console.log(imgListLength);
+        const imgBoxLength = postSize + postSpacing
+
+        let index = -1
+        let indexOne = 1
+        let timer = null
+        let animationTime = 0.5
+
+        
+        imgBoxList.unshift(imgBoxList.pop())
+        imgListOne.style.transition = animationTime + 's ease'
+        setTimeout(function () {
+            btnGroup.style.opacity = '1'
+            btnGroup.style.bottom = '5%'
+        }, animationTime * 1000)
+        
+        function cilckFun(flag) {
+            // next
+            if (flag == 'next') {
+                index--
+                console.log(index);
+                imgListOne.style.left = imgBoxLength * index + "vw";
+                setTimeout(function () {
+                    imgListOne.style.transition = 'none'
+                    if (Math.abs(index) == imgBoxCount) {
+                        index = 0
+                        imgListOne.style.left = 0
+                        imgBoxList.forEach(item => {
+                            if (item.id == 'last-img-box') {
+                                item.style.transform = `translateX(-160.68vw)`
+                            } else {
+                                item.style.transform = 'none'
+                            }
+                        });
+                    } else {
+                        
+                        if (imgBoxList[0].id == 'last-img-box') {
+                            lastImgBox.style.transition = 'none'
+                            lastImgBox.style.transform = 'translateX(0px)'
+                        } else if (index >= 0) {
+                            
+                            imgBoxList[0].style.transform = 'none'
+                        } else {
+                            
+                            imgBoxList[0].style.transform = 'translateX(160.68vw)'
+                        }
+                    }
+                    
+                    imgBoxList.push(imgBoxList.shift())
+                }, animationTime * 1000)
+            } else {
+                // last
+                index++
+                console.log(index);
+                imgBoxList.unshift(imgBoxList.pop())
+                if (imgBoxList[0].id == 'last-img-box' && index != 0) {
+                    imgBoxList[0].style.transform = 'translateX(-321.36vw)'
+                } else if (index < 0) {
+                    imgBoxList[0].style.transform = 'none'
+                } else {
+                    
+                    imgBoxList[0].style.transform = 'translateX(-160.68vw)'
+                }
+                imgListOne.style.left = imgBoxLength * index + "vw";
+                lastImgBox.style.transition = 'none'
+                
+                if (Math.abs(index) == imgBoxCount) {
+                    index = 0
+                    setTimeout(function () {
+                        imgListOne.style.transition = 'none'
+                        imgListOne.style.left = 0
+                        imgBoxList.forEach(item => {
+                            if (item.id == 'last-img-box') {
+                                item.style.transform = 'translateX(-160.68vw)'
+                            } else {
+                                item.style.transform = 'none'
+                            }
+                        });
+                    }, animationTime * 1000)
+                }
+            }
+            imgListOne.style.transition = animationTime + 's ease'
+        }
+
+       
+        
+        function throttle(fn, delay) {
+            return function () {
+                if (timer) {
+                    return
+                }
+                fn.apply(this, arguments)
+                timer = setTimeout(() => {
+                    timer = null
+                }, delay)
+            }
+        }
+
+        nextBtn.onclick = throttle(() => cilckFun('next'), animationTime * 1000);
+
+        lastBtn.onclick = throttle(() => cilckFun('last'), animationTime * 1000);
+    </script>
+
+    
+    
+</body>
+
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Main Navigation -->
+      <nav id="navbar">
+    <div class="nav-left">
+        <!-- Replace with your personal icon later -->
+        <img src="img/logo.png" alt="Personal Icon" class="logo" />
+    </div>
+
+    <div class="nav-right">
+        <span class="vline"></span>
+        <a href="../index.html">HOME</a>
+        <span class="vline"></span>
+        <a href="../about/index.html">ABOUT</a>
+        <span class="vline"></span>
+        <a href="index.html">CONTACT</a>
+    </div>
+    </nav>
+
+    <div class="content">
+        <div class="photo-wall">
+        </div>
+        <div class="photo-detail">
+        </div>
+    </div>
+
+    <script src="./photo.js"></script>
+    <script>
+        
+        const photoWall = document.querySelector('.photo-wall')
+        photosInfo.forEach(item => {
+            creatHomePhotoDom(item.cephalogram_url, item.size, item.name, item.introduction)
+        })
+
+        const content = document.querySelector('.content')
+        const photoDetail = document.querySelector('.photo-detail')
+        const photoItem = document.querySelectorAll('.photo-item')
+        const home = document.querySelector('.home')
+        const logo = document.querySelector('.logo')
+        let isHome = false
+        let scrollTop
+        
+        function creatHomePhotoDom(url, size, name, introduction) {
+            const photoItem = `
+            <div class="photo-item ${size} width-cell">
+                <div class="thumb-hover">
+                </div>
+                <img src="${url}">
+                <div class="tips">
+                    <span class="name">
+                        ${name}
+                    </span>
+                    <span class="introduction">
+                        ${introduction}
+                    </span>
+                </div>
+            </div>
+            `
+            photoWall.innerHTML += photoItem;
+        }
+
+        
+        function creatDetailPhotoDom(url, children_introduction) {
+            return `
+            <div class="photo-detail-item">
+                <img ${children_introduction ? `class="width-15 width-11 d-width-cell"` : ``} src="${url}">
+                ${children_introduction ?
+                    `<div class="introduction width-11 d-width-cell">
+                        <p>${children_introduction}</p>
+                    </div>` : ``}
+            </div>`
+        }
+
+        
+        function intoPhotoItem(item) {
+            let photoDetailStr = ''
+            const topPhotoDetail = `
+            <div class="top-photo">
+                <img src="${item.cephalogram_url}">
+            </div>
+            `
+            item.children.forEach(detail_item => {
+                photoDetailStr += creatDetailPhotoDom(detail_item.children_url, detail_item.children_introduction)
+            })
+            photoDetail.innerHTML = topPhotoDetail + photoDetailStr
+        }
+
+        // 创建loading-dom
+        function addLoading() {
+            const loadingDom = document.createElement('div');
+            const loadingImg = document.createElement('img');
+            loadingDom.className = 'loading';
+            
+            loadingDom.appendChild(loadingImg);
+            content.appendChild(loadingDom);
+            return loadingDom
+        }
+        function intoDetail(index) {
+                
+                scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                
+                intoPhotoItem(photosInfo[index])
+                const loading = addLoading()
+                loading.style.display = 'block'
+                loading.style.animation = 'loading-init 1s cubic-bezier(1, 0.06, .2, .97) forwards'
+                photoWall.style.animation = 'item-out 1s cubic-bezier(1,.06,.2,.6)'
+                
+                setTimeout(function () {
+                    window.scrollTo({
+                        top: 0,
+                    }
+                    );
+                    loading.style.animation = 'loading-out 1s cubic-bezier(1,0.06,.2,.97)'
+                    photoWall.style.display = 'none'
+                    photoDetail.style.display = 'flex'
+                    photoDetail.style.animation = 'item-init 1s cubic-bezier(1,0.06,.2,.97) forwards'
+                    loading.addEventListener('animationend', function () {
+                        content.removeChild(loading);
+                    }, false)
+                }, 1500)
+                isHome = true
+        }
+        function goHome() {
+            if (isHome) {
+                const loading = addLoading()
+                loading.style.display = 'block'
+                loading.style.animation = 'loading-init 1s cubic-bezier(1, 0.06, .2, .97) forwards'
+                photoDetail.style.animation = 'item-out 1s cubic-bezier(1, 0.06, .2, .97)'
+                setTimeout(function () {
+                    photoWall.style.display = 'flex'
+                    loading.style.animation = 'loading-out 1s cubic-bezier(1,0.06,.2,.97)'
+                    photoDetail.style.display = 'none'
+                    photoWall.style.animation = 'item-init 1s cubic-bezier(1,0.06,.2,.97) forwards'
+                    
+                    document.documentElement.scrollTop = document.body.scrollTop = scrollTop;
+                    loading.addEventListener('animationend', function () {
+                        content.removeChild(loading);
+                    }, false)
+                }, 1500)
+                isHome = false
+            }
+        }
+
+        photoItem.forEach((item, index) => {
+            item.addEventListener('click', function () {
+                intoDetail(index)
+            })
+        })
+
+        home.addEventListener('click', function () {
+            goHome()
+        })
+        logo.addEventListener('click', function () {
+            goHome()
+        })
+
+
+    </script>
+</body>
+
+</html>
