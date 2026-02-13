@@ -1,4 +1,5 @@
 
+
 * {
     font-family: 'Poppins', sans-serif;
     margin: 0;
@@ -68,25 +69,26 @@ body {
 
 
 /* Landing Page typewriter*/
-  .content .typewriter-wrapper {
-    width: 100%;
-    position: absolute;
-    left: 50%;
-    top: 30%;
-    transform: translate(-50%, -50%);
-    display: flex;
-  }
-  .content .typewriter-wrapper #text {
-    font-family: monospace;
-    font-size: 7rem;
-    padding: 16px;
-    margin: 120px 0 0 50px;
-    
-  }
-  .content .typewriter-wrapper #text .line {
-    animation: blink 0.5s step-end infinite alternate;
-    border-right: 3px solid;
-  }
+.content .typewriter-wrapper {
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  
+}
+.content .typewriter-wrapper #text {
+  font-family: monospace;
+  font-size: 7rem;
+  padding: 16px;
+  margin: 120px 0 0 var(--left-gutter);
+  
+}
+.content .typewriter-wrapper #text .line {
+  animation: blink 0.5s step-end infinite alternate;
+  border-right: 3px solid;
+}
 
 #text .highlight {
   font-style: italic;
@@ -115,6 +117,7 @@ body {
     --post-spacing: 1.78vw;
     --post-size: 25vw;
     --mask-size: 100vw;
+    --left-gutter: 80px;
   }
   
   #banner {
@@ -304,55 +307,62 @@ body {
 .about-intro p {
   font-size: 2.5rem;
   max-width: 720px;
-  margin: 0 auto 150px -100px;
+  margin: 0 0 120px -70px;
   color: #6b6b6b;
 }
 
+.space {
+  height: 90px;
+}
+
 /* 3 Value Boxes */
-.value-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 48px;
-  max-width: 1000px;
-  margin: 0 auto 140px;
+.values-section {
+  max-width: 1800px;
+  margin: 120px auto;
 }
 
-.value-card {
-  background: transparent;
-  border-radius: 24px;
-  padding: 48px 32px;
-  border: 1px solid #eee;
-  text-align: center;
-  transition: transform 0.2s ease, border-color 0.2s ease;
+.value-row {
+  padding: 18px 0;
+  border-top: 1px solid #dddddd;
+  margin: auto auto auto -90px;
 }
 
-.value-card:hover {
-  transform: translateY(-6px);
-  border-color: #FF80B4;
+.value-row:last-child {
+  border-bottom: 1px solid #dddddd;
 }
 
-.value-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 16px;
-  background: #fafafa;
+.value-title {
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin: 0 auto 24px;
-  font-size: 24px;
-}
-
-.value-card h3 {
-  font-size: 2rem;
+  gap: 16px;
   margin-bottom: 12px;
-  font-weight: 500;
 }
 
-.value-card p {
-  font-size: 1.4rem;
-  color: #777;
+.value-title h3 {
+  font-size: 2.6rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.value-row p {
+  font-size: 1.6rem;
+  color: #8a8a8a;
+  margin-left: 40px; 
+  max-width: 560px;
   line-height: 1.6;
+}
+
+.icon {
+  font-size: 2.2rem;
+  opacity: 0.8;
+}
+
+.value-row {
+  transition: transform 0.2s ease;
+}
+
+.value-row:hover {
+  transform: translateX(4px);
 }
 
 
@@ -420,54 +430,63 @@ body {
   margin-top: 80px;
 }
 
-.tools-section {
-  max-width: 1100px;
-  margin: 0 auto;
-
-  text-align: center;
+.tools-section-list {
+  max-width: 1300px;
+  margin: auto auto auto 50px;
+  padding: 0 32px;
 }
 
 .tools-subtitle {
-  font-size: 3rem;
-  color: #424242;
-  margin-bottom: 64px;
+  font-size: 2.4rem;
+  color: #7a7a7a;
+  margin-bottom: 80px;
+  max-width: 520px;
 }
 
-.tools-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 32px;
+.tools-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.tool-card {
-  background: transparent;
-  border-radius: 16px;
-  padding: 28px 20px 24px;
+.tool-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #dddddd;
+}
+
+.tool-left {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.tool-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
   border: 1px solid #eee;
-  transition: transform 0.2s ease, border-color 0.2s ease;
-}
-
-.tool-card:hover {
-  transform: translateY(-4px);
-  border-color: #FF80B4;
-}
-
-.tool-card img {
-  width: 36px;
-  height: 36px;
-  margin-bottom: 12px;
-  opacity: 0.7;
-  transition: opacity 0.2s ease;
-}
-
-.tool-card:hover img {
-  opacity: 1;
-}
-
-.tool-card span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #bdbdbd;
   font-size: 1.4rem;
   font-weight: 500;
 }
+
+.tool-name {
+  font-size: 2.4rem;
+  font-weight: 500;
+  color: #111;
+}
+
+.tool-years {
+  font-size: 1.4rem;
+  color: #d1d1d1;
+}
+
 
 
 
