@@ -5,28 +5,7 @@
   margin: 0;
 }
 
-/* Sticky NavBar */
-#navbar {
-position: fixed; 
-top: 0;
-left: 0;
-right: 0;
-background-color: #fff; 
-padding: 15px; 
-display: flex;
-justify-content: space-around; 
-transition: background-color 0.5s ease; 
-z-index: 1000;
-}
-#navbar a {
-color:#000;
-text-decoration: none;
-font-size: 16px;
-font-weight: 600;
-}
-#navbar a:hover {
-color: #FF80B4;
-}
+
 
 .about {
   position: fixed;

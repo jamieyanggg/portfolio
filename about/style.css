@@ -128,12 +128,12 @@ html {
   }
   .describe .tips {
     font-size: 1rem;
-    font-family: "Inter", sans-serif;
+    font-family: "Poppins", sans-serif;
     margin-bottom: 10px;
   }
   .describe .contnet-text {
     font-size: 2rem;
-    font-family: "Inter", sans-serif;
+    font-family: "Poppins", sans-serif;
     cursor: pointer;
   }
   .describe .contnet-text:hover {

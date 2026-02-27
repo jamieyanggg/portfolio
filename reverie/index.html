@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverie</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<style>
+
+/* --------------------
+   ROOT VARIABLES
+-------------------- */
+
+:root {
+  --rev-bg: #f6f2fb;
+  --rev-bg-soft: #efe8f7;
+  --rev-lavender: #8c7bb8;
+  --rev-deep: #4b4261;
+  --rev-rose: #d7a6c6;
+  --rev-mist: #cbbbe6;
+  --rev-card: rgba(255,255,255,0.6);
+  --rev-text-soft: #7c748f;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(203,187,230,0.4), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(215,166,198,0.3), transparent 40%),
+    linear-gradient(to bottom, var(--rev-bg), var(--rev-bg-soft));
+  color: var(--rev-deep);
+  line-height: 1.7;
+}
+
+section {
+  padding: 120px 8%;
+}
+
+h1 { font-size: 96px; font-weight:700; }
+h2 { font-size: 48px; margin-bottom:20px; }
+h3 { font-size: 22px; margin-bottom:10px; }
+p  { font-size:18px; max-width:700px; color:#5f6f8f; }
+
+/* ---------------- HERO ---------------- */
+
+.hero {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(140,123,184,0.9),
+      rgba(215,166,198,0.9)
+    );
+  color: white;
+  padding: 180px 8%;
+}
+
+.hero p {
+  color: rgba(255,255,255,0.9);
+  margin-top: 20px;
+  font-size: 22px;
+}
+
+.tag {
+  display:inline-block;
+  margin-top:30px;
+  margin-right:10px;
+  padding:8px 20px;
+  background:rgba(255,255,255,0.2);
+  border-radius:40px;
+  font-size:14px;
+}
+
+/* ---------------- GRID ---------------- */
+
+.grid-2 {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:80px;
+  align-items:center;
+}
+
+.grid-3 {
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+  gap:40px;
+}
+
+/* ---------------- CARDS ---------------- */
+
+.card {
+  background: var(--rev-card);
+  backdrop-filter: blur(12px);
+  padding: 40px;
+  border-radius: 32px;
+  box-shadow:
+    0 20px 50px rgba(140,123,184,0.15),
+    inset 0 1px 0 rgba(255,255,255,0.6);
+}
+
+.card h3 {
+  margin-bottom:10px;
+}
+
+/* ---------------- SECTION LABEL ---------------- */
+
+.label {
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: var(--rev-mist);
+  margin-bottom: 12px;
+}
+
+/* ---------------- IMAGE ---------------- */
+
+img {
+  width: 100%;
+  border-radius: 32px;
+  box-shadow:
+    0 30px 70px rgba(140,123,184,0.2);
+}
+
+/* ---------------- PERSONA ---------------- */
+
+.persona {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(203,187,230,0.4),
+      rgba(215,166,198,0.4)
+    );
+  border-radius: 50px;
+  padding: 100px;
+}
+
+.badge {
+  display:inline-block;
+  padding:8px 18px;
+  border-radius:30px;
+  background:var(--blue);
+  color:white;
+  margin-top:10px;
+  font-size:14px;
+}
+
+/* ---------------- RESULTS ---------------- */
+
+.results {
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 50px;
+  padding: 100px;
+  text-align: center;
+  box-shadow: 0 30px 70px rgba(140,123,184,0.15);
+}
+
+.result-number {
+  font-size: 52px;
+  font-weight: 700;
+  color: var(--rev-lavender);
+}
+
+/* ---------------- FOOTER ---------------- */
+
+.footer {
+  text-align:center;
+  padding:80px;
+  color:#9aa6c0;
+}
+
+
+</style>
+
+<body>
+    <nav id="navbar">
+    <div class="nav-left">
+        <!-- Replace with your personal icon later -->
+        <img src="../img/logo.png" alt="Personal Icon" class="logo" />
+    </div>
+
+    <div class="nav-right">
+        <span class="vline"></span>
+        <a href="../index.html">HOME</a>
+        <span class="vline"></span>
+        <a href="../about/index.html">ABOUT</a>
+        <span class="vline"></span>
+        <a href="../contact/index.html">CONTACT</a>
+    </div>
+    </nav>
+
+    <div class="container">
+
+<a href="index.html" class="back-link">Back to Home</a>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Reverie</h1>
+  <p>A personalized mindfulness app designed to help users manage stress and build lasting self-care habits.</p>
+  <span class="tag">Mobile App</span>
+  <span class="tag">UX/UI Design</span>
+  <span class="tag">2025</span>
+</section>
+
+
+<!-- OVERVIEW -->
+<section>
+  <div class="label">01 OVERVIEW</div>
+  <h2>About the Project</h2>
+  <p>
+    Reverie is a mobile donation experience designed around calm, cosmic aesthetics and emotional gratification. Rather than presenting charity as obligation, Reverie reframes giving as a ritual of hope, self-forgiveness, and daily completion
+  </p>
+</section>
+
+
+<!-- CHALLENGE -->
+<section class="grid-2">
+  <div>
+    <div class="label">02 CHALLENGE</div>
+    <h2>The Challenge</h2>
+    <p>
+    Young adults (Gen Z & Millennials) are cause-driven and socially aware, yet frequently fail to donate consistently despite strong values.
+    <br>
+    <br>
+    How might we design a donation experience that feels emotionally rewarding, habitual, and socially meaningful — without overwhelming or alienating users?
+    </p>
+  </div>
+  <img src="challenge-image.jpg">
+</section>
+
+
+<!-- PROBLEM STATEMENT (NOW BELOW CHALLENGE) -->
+<section>
+  <div class="label">03 PROBLEM</div>
+  <h2>Problem Statement</h2>
+  <p>
+    Gen Z and Millennials want to advocate for causes and feel impactful, but existing donation platforms feel transactional, untrustworthy, or emotionally distant.
+
+They need a simple, aesthetically pleasing, emotionally resonant system that transforms small daily actions into meaningful rituals — without feeling financially burdensome or manipulative .
+  </p>
+</section>
+
+
+<!-- OBJECTIVES -->
+<section>
+  <div class="label">04 OBJECTIVES</div>
+  <h2>Objectives & Research Approach</h2>
+  <p>
+    Using Design Thinking methodology, I conducted interviews and surveys
+    to identify key user behaviors and pain points.
+  </p>
+</section>
+
+
+<!-- USER INTERVIEWS -->
+<section>
+  <div class="label">05 USER RESEARCH</div>
+  <h2>User Interviews</h2>
+
+  <div class="grid-3" style="margin-top:50px;">
+    <div class="card">
+      <h3>"I don’t know where to start."</h3>
+      <p>Users felt overwhelmed by too many meditation options.</p>
+    </div>
+
+    <div class="card">
+      <h3>"I need something quick."</h3>
+      <p>Most preferred 5–10 minute sessions.</p>
+    </div>
+
+    <div class="card">
+      <h3>"I forget to stay consistent."</h3>
+      <p>Lack of reminders reduced long-term engagement.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- WIREFRAMES (MOVED ABOVE USER FLOW) -->
+<section>
+  <div class="label">06 WIREFRAMES</div>
+  <h2>Low-Fidelity Wireframes</h2>
+  <img src="wireframes.jpg">
+</section>
+
+
+<!-- USER FLOW (NOW BELOW WIREFRAMES) -->
+<section>
+  <div class="label">07 INFORMATION ARCHITECTURE</div>
+  <h2>User Flow</h2>
+  <img src="user-flow.jpg">
+</section>
+
+
+<!-- ITERATIONS -->
+<section>
+  <div class="label">08 ITERATIONS</div>
+  <h2>Design Iterations</h2>
+  <p>
+    Usability testing revealed the need to simplify navigation
+    and make mood-based recommendations more prominent.
+  </p>
+</section>
+
+
+<!-- USER TESTING (NOW ABOVE FINAL PRODUCT + PERSONA INSIDE) -->
+<section>
+  <div class="label">09 USER TESTING</div>
+  <h2>Usability Testing & Validation</h2>
+
+  <div class="grid-3" style="margin-top:60px;">
+
+    <!-- PERSONA AS CARD -->
+    <div class="card">
+      <h3>Primary Persona</h3>
+      <p><strong>Emma, 32</strong></p>
+      <p>Marketing consultant struggling to stay consistent with meditation.
+      Needs quick, adaptive tools that fit into her routine.</p>
+    </div>
+
+    <!-- INSIGHT 1 -->
+    <div class="card">
+      <h3>Navigation Clarity</h3>
+      <p>80% of participants preferred simplified bottom navigation.</p>
+    </div>
+
+    <!-- INSIGHT 2 -->
+    <div class="card">
+      <h3>Mood Personalization</h3>
+      <p>Users engaged more when content adapted to their emotional state.</p>
+    </div>
+
+    <!-- INSIGHT 3 -->
+    <div class="card">
+      <h3>Session Length</h3>
+      <p>Short sessions (under 10 minutes) increased daily retention.</p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- FINAL PRODUCT (NOW BELOW USER TESTING) -->
+<section>
+  <div class="label">10 FINAL PRODUCT</div>
+  <h2>The Final Design</h2>
+  <img src="final-product.jpg">
+</section>
+
+
+<!-- RESULTS -->
+<section>
+  <div class="results">
+    <h2>Results & Impact</h2>
+
+    <div class="grid-3" style="margin-top:40px;">
+      <div>
+        <div class="result-number">85%</div>
+        <p>Found navigation intuitive</p>
+      </div>
+      <div>
+        <div class="result-number">70%</div>
+        <p>Improved daily engagement</p>
+      </div>
+      <div>
+        <div class="result-number">90%</div>
+        <p>Preferred personalized recommendations</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="footer">
+  Designed & Developed by You © 2025
+</section>
+</body>
+
+</html>
