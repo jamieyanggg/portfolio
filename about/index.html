@@ -16,7 +16,9 @@
       <nav id="navbar">
     <div class="nav-left">
         <!-- Replace with your personal icon later -->
-        <img src="img/logo.png" alt="Personal Icon" class="logo" />
+        <a href="../index.html">
+            <img src="img/logo.png" alt="Personal Icon" class="logo" />
+        </a>
     </div>
 
     <div class="nav-right">
@@ -114,7 +116,7 @@
                 draggedElement.style.boxShadow = ''
                 setTimeout(() => {
                     describe.innerHTML = `<div class="tips">${cardInfo[cardStackWrapper.length - 1].tips}</div>
-                                  <div class="contnet-text">${cardInfo[cardStackWrapper.length - 1].contnetText}</div>`
+                                  <div class="content-text">${cardInfo[cardStackWrapper.length - 1].contentText}</div>`
                     document.body.style.background = `rgb(${cardInfo[cardStackWrapper.length - 1].bgColor})`
                     cardStackWrapper[cardStackWrapper.length - 1].style.transition = '.5s ease'
                     cardStackWrapper[cardStackWrapper.length - 1].style.transform = 'rotateX(0) rotateY(0) rotateZ(0) scale(1)'
@@ -132,7 +134,7 @@
                 describe.classList.add('describe-disappear-animation')
                 setTimeout(() => {
                     describe.innerHTML = `<div class="tips">${cardInfo[cardStackWrapper.length - 1].tips}</div>
-                                  <div class="contnet-text">${cardInfo[cardStackWrapper.length - 1].contnetText}</div>`
+                                  <div class="content-text">${cardInfo[cardStackWrapper.length - 1].contentText}</div>`
                     document.body.style.background = `rgb(${cardInfo[cardStackWrapper.length - 1].bgColor})`
                     describe.classList.add('describe-appear-animation')
                     describe.classList.remove('describe-disappear-animation')
@@ -183,7 +185,7 @@
             cardStackWrapper = Array.apply(null, document.querySelectorAll('.card-stack-wrapper'))
             
             describe.innerHTML = `<div class="tips">${cardInfo[cardStackWrapper.length - 1].tips}</div>
-                                  <div class="contnet-text">${cardInfo[cardStackWrapper.length - 1].contnetText}</div>`
+                                  <div class="content-text">${cardInfo[cardStackWrapper.length - 1].contentText}</div>`
             document.body.style.background = `rgb(${cardInfo[cardStackWrapper.length - 1].bgColor})`
             
             cardStackWrapper.forEach(dom => {
@@ -195,10 +197,7 @@
         init()
     </script>
     
-    
-    
 
-    
 </body>
 
 </html>

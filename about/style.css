@@ -61,6 +61,7 @@ html {
     scroll-behavior: smooth;
 }
   
+
   .wrapper {
     width: 100vw;
     height: 100vh;
@@ -119,6 +120,22 @@ html {
   .card-slide .card-stack-wrapper:last-child .card-stack-inner {
     box-shadow: rgba(0, 0, 0, 0) 2px 5px 27px;
   }
+
+.about-line {
+  border-left: 2px solid rgba(255,255,255,0.2);
+  padding-left: 12px;
+}
+
+/* make first line stronger (title vibe) */
+.about-line:first-child {
+  font-size: 2rem;
+  color: #ffffff;
+}
+
+/* optional: softer fade for rest */
+.about-line:not(:first-child) {
+  opacity: 0.8;
+}
   
   .describe {
     width: 50%;
@@ -142,13 +159,6 @@ html {
   
   .card-stack-wrapper-animating-DMD {
     animation: dragMouseDown 0.2s ease-in-out forwards;
-  }
-  /* Footer */
-  footer {
-    background-color: #111;
-    color: #FFF;
-    text-align: center;
-    padding: 15px;
   }
   
   .social-media {

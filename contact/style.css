@@ -1,16 +1,4 @@
-
-  * {
-    font-family: 'Poppins', sans-serif;
-    padding: 0;
-    margin: 0;
-  }
-  
-  body {
-    background-color:#fff;
-  }
-
-  /* Sticky NavBar */
-  #navbar {
+#navbar {
   position: fixed;
   top: 0;
   left: 0;
@@ -56,210 +44,120 @@
   background: #111;
   opacity: 0.4;
 }
-  
-  .content {
-    padding: 0px 5vw;
-    box-sizing: border-box;
+
+.contact-hero {
+  margin-top: 140px;
+  padding: 0 80px;
+}
+
+.contact-hero h1 {
+  font-size: 6rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.contact-hero p {
+  font-size: 1.8rem;
+  color: #6b6b6b;
+}
+
+.contact-container {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 120px;
+  padding: 120px 80px;
+}
+
+.contact-info h2 {
+  font-size: 2.8rem;
+  margin-bottom: 40px;
+}
+
+.contact-item {
+  margin-bottom: 32px;
+}
+
+.contact-item span {
+  display: block;
+  font-size: 1.2rem;
+  letter-spacing: 0.1em;
+  color: #999;
+  margin-bottom: 6px;
+}
+
+.contact-item a {
+  font-size: 1.6rem;
+  text-decoration: none;
+  color: #111;
+  transition: 0.2s ease;
+}
+
+.contact-item a:hover {
+  color: #FF80B4;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 1.2rem;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group textarea {
+  border: none;
+  border-bottom: 1px solid #ddd;
+  padding: 12px 4px;
+  font-size: 1.5rem;
+  outline: none;
+  background: transparent;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-bottom: 1px solid #111;
+}
+
+.contact-form button {
+  margin-top: 20px;
+  align-self: flex-start;
+  padding: 12px 28px;
+  border-radius: 40px;
+  border: 1px solid #111;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1.3rem;
+  letter-spacing: 0.1em;
+  transition: 0.3s ease;
+}
+
+.contact-form button:hover {
+  background: #111;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .contact-container {
+    grid-template-columns: 1fr;
+    gap: 60px;
+    padding: 80px 24px;
   }
-  .content .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 10vh;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    z-index: 100;
+
+  .contact-hero {
+    padding: 0 24px;
   }
-  .content .header .logo {
-    position: absolute;
-    left: 4vw;
-    cursor: pointer;
-    width: 7vw;
+
+  .contact-hero h1 {
+    font-size: 3.5rem;
   }
-  .content .header .home {
-    position: absolute;
-    right: 4vw;
-    cursor: pointer;
-  }
-  .content .photo-wall {
-    margin-top: 10vh;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  .content .photo-wall .photo-item {
-    cursor: pointer;
-    overflow: hidden;
-    position: relative;
-    margin-bottom: 120px;
-  }
-  .content .photo-wall .photo-item:hover .thumb-hover {
-    opacity: 1;
-  }
-  .content .photo-wall .photo-item:hover img {
-    transform: scale(1.2);
-  }
-  .content .photo-wall .photo-item .thumb-hover {
-    background-color: rgba(19, 21, 24, 0.3);
-    background-size: auto;
-    background-position: 0% 0%;
-    background-repeat: no-repeat;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    top: 0;
-    z-index: 1;
-    transition: all 0.3s ease;
-  }
-  .content .photo-wall .photo-item img {
-    width: 100%;
-    height: 100%;
-    transition: 0.5s;
-  }
-  .content .photo-wall .photo-item .tips {
-    color: #e8eaee;
-    font-size: 1vw;
-    text-transform: uppercase;
-    font-family: "MonumentExtended-Black";
-    position: absolute;
-    bottom: 5%;
-    margin-left: 2vw;
-    z-index: 10;
-  }
-  .content .photo-wall .photo-item .tips .introduction {
-    font-family: "MonumentExtended-light";
-  }
-  .content .photo-wall .photo-item .tips span {
-    display: block;
-  }
-  .content .photo-detail {
-    display: none;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
-  .content .photo-detail .top-photo {
-    width: 100%;
-    margin-bottom: 120px;
-    overflow: hidden;
-  }
-  .content .photo-detail .top-photo img {
-    width: 100%;
-    height: 100%;
-    animation: photo-animation 120s;
-    animation-direction: alternate;
-  }
-  .content .photo-detail .photo-detail-item {
-    margin-bottom: 120px;
-    display: flex;
-    width: 100%;
-  }
-  .content .photo-detail .photo-detail-item img {
-    width: 100%;
-  }
-  .content .photo-detail .photo-detail-item .introduction {
-    color: black;
-    font-family: "NeueMachina-Regular", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    display: flex;
-    align-items: center;
-    line-height: 5vh;
-    padding: 5vw;
-  }
-  .content .loading {
-    width: 100vw;
-    height: 100vh;
-    background-color: rgb(19, 21, 24);
-    position: fixed;
-    left: 0;
-    top: 100vh;
-    z-index: 101;
-  }
-  .content .loading img {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-  
-  .width-24 {
-    width: 100%;
-  }
-  
-  .width-11 {
-    width: 45.8333333333%;
-  }
-  
-  .width-15 {
-    width: 58.3333333333% !important;
-  }
-  
-  @keyframes loading-init {
-    0% {
-      top: 100vh;
-    }
-    100% {
-      top: 0vh;
-    }
-  }
-  @keyframes loading-out {
-    0% {
-      top: 0;
-    }
-    100% {
-      top: -100vh;
-    }
-  }
-  @keyframes item-out {
-    0% {
-      transform: translateY(0);
-    }
-    100% {
-      transform: translateY(-10%);
-    }
-  }
-  @keyframes item-init {
-    0% {
-      transform: translateY(10%);
-    }
-    100% {
-      transform: translateY(0);
-    }
-  }
-  @keyframes photo-animation {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(2);
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
-  @media (max-width: 769px) {
-    .width-cell {
-      width: 100% !important;
-    }
-    .logo {
-      width: 15vw !important;
-    }
-  }
-  @media (max-width: 1024px) {
-    .photo-detail-item {
-      flex-direction: column;
-    }
-    .photo-detail-item img {
-      width: 100%;
-    }
-    .photo-detail-item .introduction {
-      padding: 5vw 0 !important;
-    }
-    .photo-detail-item .d-width-cell {
-      width: 100% !important;
-    }
-  }
+}

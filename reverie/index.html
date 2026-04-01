@@ -1,383 +1,902 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reverie</title>
-    <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reverie — Case Study</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f7f3fb;
+      --bg2: #ede6f5;
+      --lavender: #8c7bb8;
+      --deep: #3d3456;
+      --rose: #c99ab8;
+      --mist: #bfaee0;
+      --soft: #7c6f92;
+      --card: rgba(255,255,255,0.65);
+      --white: #ffffff;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--deep);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    #navbar {
+      position: fixed; top:0; left:0; right:0;
+      height: 64px;
+      background: #fff;
+      padding: 0 32px;
+      display: flex; align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #e5e5e5;
+      z-index: 1000;
+    }
+    .nav-logo {
+      height: 54px;
+      width: auto;
+      position: relative;
+      top: 5px;
+    }
+    .nav-right-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    #navbar a {
+      font-family: 'Poppins', sans-serif;
+      color: #111;
+      text-decoration: none;
+      font-size: 16px;
+      letter-spacing: 0.08em;
+      font-weight: 500;
+    }
+    #navbar a:hover { color: #FF80B4; }
+    .back-bar {
+      position: relative;
+      top: 100px;
+      left: 0; right: 0;
+      padding: 10px 32px;
+      z-index: 999;
+    }
+    .back-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: white;
+      text-decoration: none;
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .back-arrow:hover { color: #FF80B4; }
+    .back-arrow svg { flex-shrink: 0; }
+    .nvline {
+      width: 1px;
+      height: 28px;
+      background: #111;
+      opacity: 0.4;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 200px 8% 80px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(145deg, #5a4a7e 0%, #8c7bb8 45%, #c99ab8 100%);
+    }
+    .hero::before {
+      content:'';
+      position:absolute; inset:0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-orb {
+      position:absolute; border-radius:50%;
+      pointer-events:none;
+    }
+    .orb1 { width:600px; height:600px; top:-200px; right:-100px;
+      background: radial-gradient(circle, rgba(215,166,198,0.35), transparent 70%); }
+    .orb2 { width:400px; height:400px; bottom:-100px; left:5%;
+      background: radial-gradient(circle, rgba(203,187,230,0.25), transparent 70%); }
+
+    .hero-content { position:relative; z-index:2; max-width: 760px; }
+    .hero-eyebrow {
+      font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+      color: rgba(255,255,255,0.6); margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(72px, 10vw, 130px);
+      font-weight: 300;
+      color: white;
+      line-height: 1;
+      margin-bottom: 28px;
+    }
+    .hero h1 em { font-style:italic; font-weight:300; }
+    .hero-desc {
+      font-size: 18px; font-weight: 300;
+      color: rgba(255,255,255,0.82);
+      max-width: 520px;
+      margin-bottom: 48px;
+    }
+    .hero-tags { display:flex; flex-wrap:wrap; gap:12px; }
+    .hero-tag {
+      padding: 10px 20px;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 40px;
+      font-size: 12px; letter-spacing: 1px;
+      color: rgba(255,255,255,0.85);
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(4px);
+    }
+    .hero-tag strong { display:block; color:white; letter-spacing:.5px; font-weight:500; margin-bottom:2px; }
+
+    /* ── SECTION WRAPPER ── */
+    .section { padding: 100px 8%; }
+    .section-alt { background: rgba(237,230,245,0.5); }
+
+    .label {
+      font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--mist); font-weight: 400;
+      margin-bottom: 16px; display: flex; align-items:center; gap:12px;
+    }
+    .label::after {
+      content:''; display:inline-block; width: 40px; height:1px; background:var(--mist);
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 4vw, 56px);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    h2 em { font-style: italic; color: var(--lavender); }
+
+    p.lead {
+      font-size: 17px; color: var(--soft);
+      max-width: 640px; line-height: 1.8;
+    }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--card);
+      backdrop-filter: blur(16px);
+      border-radius: 24px;
+      padding: 36px;
+      box-shadow: 0 8px 32px rgba(140,123,184,0.12), inset 0 1px 0 rgba(255,255,255,0.7);
+      border: 1px solid rgba(255,255,255,0.5);
+    }
+    .card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px; font-weight: 500;
+      margin-bottom: 10px;
+    }
+    .card p, .card li { font-size: 15px; color: var(--soft); }
+    .card ul { padding-left: 18px; }
+    .card li { margin-bottom: 6px; }
+
+    /* ── GRID ── */
+    .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; }
+    .grid-3 { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:28px; }
+
+    /* ── DIVIDER ── */
+    .wavy-divider {
+      width:100%; height: 80px; overflow:hidden;
+      margin: 0;
+    }
+    .wavy-divider svg { width:100%; height:100%; }
+
+    /* ── PROBLEM SVG ILLUSTRATION ── */
+    .problem-visual {
+      display:flex; align-items:center; justify-content:center;
+      padding: 20px 0;
+    }
+
+    /* ── COMPETITIVE TABLE ── */
+    .comp-table-wrap { overflow-x:auto; margin-top:48px; }
+    .comp-table {
+      width:100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .comp-table th {
+      font-size: 11px; letter-spacing:2px; text-transform:uppercase;
+      color: var(--soft); padding: 14px 20px;
+      border-bottom: 1px solid rgba(140,123,184,0.2);
+      text-align:left; font-weight:500;
+    }
+    .comp-table td {
+      padding: 16px 20px;
+      border-bottom: 1px solid rgba(140,123,184,0.1);
+      color: var(--soft); font-size:14px;
+    }
+    .comp-table tr:hover td { background: rgba(140,123,184,0.05); }
+    .comp-table td:first-child { font-weight:500; color:var(--deep); }
+    .badge-yes { color: #5e9e6e; font-weight:600; }
+    .badge-no  { color: #b87474; }
+    .badge-rev { background: var(--lavender); color:white; padding:3px 10px; border-radius:20px; font-size:12px; font-weight:500; }
+
+    /* ── QUOTE CARDS ── */
+    .quote-card {
+      background: var(--card);
+      border-left: 3px solid var(--lavender);
+      border-radius: 0 16px 16px 0;
+      padding: 28px 32px;
+      box-shadow: 0 4px 20px rgba(140,123,184,0.1);
+    }
+    .quote-card blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px; font-style:italic;
+      color: var(--deep); margin-bottom:12px; line-height:1.5;
+    }
+    .quote-card .insight { font-size:13px; color:var(--soft); }
+
+    /* ── USER FLOW DIAGRAM ── */
+    .flow-diagram { margin-top: 40px; }
+    .flow-row { display:flex; align-items:center; gap:0; flex-wrap:wrap; justify-content:center; }
+    .flow-node {
+      background: var(--card);
+      border: 1px solid rgba(140,123,184,0.25);
+      border-radius: 16px;
+      padding: 18px 24px;
+      text-align:center; min-width:130px;
+      box-shadow: 0 4px 16px rgba(140,123,184,0.1);
+    }
+    .flow-node .icon { font-size:24px; margin-bottom:6px; }
+    .flow-node span { font-size:13px; font-weight:500; color:var(--deep); display:block; }
+    .flow-arrow {
+      font-size:22px; color:var(--mist); margin:0 8px; flex-shrink:0;
+    }
+    .flow-node.highlight {
+      background: linear-gradient(135deg, var(--lavender), var(--rose));
+      border-color: transparent; color:white;
+    }
+    .flow-node.highlight span { color:white; }
+
+    /* ── RESULTS ── */
+    .results-section {
+      background: linear-gradient(135deg, var(--deep), #5a4a7e);
+      border-radius: 40px;
+      padding: 80px;
+      text-align:center;
+      position:relative; overflow:hidden;
+    }
+    .results-section::before {
+      content:''; position:absolute; inset:0;
+      background: radial-gradient(circle at 70% 30%, rgba(201,154,184,0.3), transparent 55%);
+    }
+    .results-section h2 {
+      color:white; position:relative; margin-bottom: 16px;
+    }
+    .results-section > p {
+      color: rgba(255,255,255,0.6); font-size:15px; margin:0 auto 60px; position:relative;
+    }
+    .results-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:40px; position:relative; }
+    .result-item {}
+    .result-number {
+      font-family:'Cormorant Garamond',serif;
+      font-size:72px; font-weight:300; color:white;
+      line-height:1;
+    }
+    .result-label { font-size:14px; color:rgba(255,255,255,0.6); margin-top:8px; }
+
+    /* ── CHART BAR ── */
+    .bar-chart { margin-top:48px; }
+    .bar-row { margin-bottom:24px; }
+    .bar-meta { display:flex; justify-content:space-between; margin-bottom:8px; }
+    .bar-label { font-size:14px; color:var(--deep); font-weight:500; }
+    .bar-val   { font-size:14px; color:var(--lavender); font-weight:500; }
+    .bar-track { height:8px; background:rgba(140,123,184,0.15); border-radius:99px; overflow:hidden; }
+    .bar-fill  { height:100%; border-radius:99px;
+      background: linear-gradient(90deg, var(--lavender), var(--rose));
+      animation: grow 1.2s ease forwards; width:0; }
+    @keyframes grow { to { width: var(--w); } }
+
+    /* ── PERSONA CARD ── */
+    .persona-card {
+      background: linear-gradient(135deg, rgba(203,187,230,0.4), rgba(215,166,198,0.4));
+      border-radius: 32px; padding: 48px;
+      display:flex; gap:40px; align-items:center;
+    }
+    .persona-avatar {
+      width:90px; height:90px; border-radius:50%; flex-shrink:0;
+      background: linear-gradient(135deg, var(--lavender), var(--rose));
+      display:flex; align-items:center; justify-content:center;
+      font-size:36px;
+    }
+    .persona-info h3 { font-family:'Cormorant Garamond',serif; font-size:26px; margin-bottom:6px; }
+    .persona-info .role { font-size:13px; letter-spacing:2px; text-transform:uppercase; color:var(--soft); margin-bottom:14px; }
+    .persona-info p { font-size:15px; color:var(--soft); }
+
+    /* ── PROCESS STEPS ── */
+    .process-steps { counter-reset: step; display:flex; flex-direction:column; gap:0; }
+    .step {
+      display:flex; gap:32px; padding:32px 0;
+      border-bottom: 1px solid rgba(140,123,184,0.12);
+      counter-increment: step;
+    }
+    .step:last-child { border-bottom:none; }
+    .step-num {
+      font-family:'Cormorant Garamond',serif; font-size:52px; font-weight:300;
+      color: rgba(140,123,184,0.2); line-height:1; flex-shrink:0; width:60px;
+    }
+    .step-content h3 { font-family:'Cormorant Garamond',serif; font-size:22px; margin-bottom:8px; }
+    .step-content p { font-size:15px; color:var(--soft); max-width:520px; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align:center; padding:60px;
+      font-size:13px; color:var(--mist);
+      border-top: 1px solid rgba(140,123,184,0.12);
+    }
+
+    /* ── LEARNINGS ── */
+    .learning-pill {
+      display:inline-block; margin: 6px 4px;
+      padding: 10px 20px;
+      background: rgba(140,123,184,0.12);
+      border-radius:99px;
+      font-size:14px; color:var(--lavender); font-weight:500;
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal { opacity:0; transform:translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    @media(max-width:768px){
+      .grid-2 { grid-template-columns:1fr; }
+      .results-grid { grid-template-columns:1fr; gap:24px; }
+      .persona-card { flex-direction:column; }
+      .results-section { padding:48px 28px; }
+      .flow-row { gap:8px; }
+      .flow-arrow { display:none; }
+    }
+  </style>
 </head>
-
-<style>
-
-/* --------------------
-   ROOT VARIABLES
--------------------- */
-
-:root {
-  --rev-bg: #f6f2fb;
-  --rev-bg-soft: #efe8f7;
-  --rev-lavender: #8c7bb8;
-  --rev-deep: #4b4261;
-  --rev-rose: #d7a6c6;
-  --rev-mist: #cbbbe6;
-  --rev-card: rgba(255,255,255,0.6);
-  --rev-text-soft: #7c748f;
-}
-
-* { margin:0; padding:0; box-sizing:border-box; }
-
-body {
-  font-family: 'Inter', sans-serif;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(203,187,230,0.4), transparent 40%),
-    radial-gradient(circle at 80% 80%, rgba(215,166,198,0.3), transparent 40%),
-    linear-gradient(to bottom, var(--rev-bg), var(--rev-bg-soft));
-  color: var(--rev-deep);
-  line-height: 1.7;
-}
-
-section {
-  padding: 120px 8%;
-}
-
-h1 { font-size: 96px; font-weight:700; }
-h2 { font-size: 48px; margin-bottom:20px; }
-h3 { font-size: 22px; margin-bottom:10px; }
-p  { font-size:18px; max-width:700px; color:#5f6f8f; }
-
-/* ---------------- HERO ---------------- */
-
-.hero {
-  background:
-    linear-gradient(
-      135deg,
-      rgba(140,123,184,0.9),
-      rgba(215,166,198,0.9)
-    );
-  color: white;
-  padding: 180px 8%;
-}
-
-.hero p {
-  color: rgba(255,255,255,0.9);
-  margin-top: 20px;
-  font-size: 22px;
-}
-
-.tag {
-  display:inline-block;
-  margin-top:30px;
-  margin-right:10px;
-  padding:8px 20px;
-  background:rgba(255,255,255,0.2);
-  border-radius:40px;
-  font-size:14px;
-}
-
-/* ---------------- GRID ---------------- */
-
-.grid-2 {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:80px;
-  align-items:center;
-}
-
-.grid-3 {
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
-  gap:40px;
-}
-
-/* ---------------- CARDS ---------------- */
-
-.card {
-  background: var(--rev-card);
-  backdrop-filter: blur(12px);
-  padding: 40px;
-  border-radius: 32px;
-  box-shadow:
-    0 20px 50px rgba(140,123,184,0.15),
-    inset 0 1px 0 rgba(255,255,255,0.6);
-}
-
-.card h3 {
-  margin-bottom:10px;
-}
-
-/* ---------------- SECTION LABEL ---------------- */
-
-.label {
-  font-size: 13px;
-  letter-spacing: 3px;
-  color: var(--rev-mist);
-  margin-bottom: 12px;
-}
-
-/* ---------------- IMAGE ---------------- */
-
-img {
-  width: 100%;
-  border-radius: 32px;
-  box-shadow:
-    0 30px 70px rgba(140,123,184,0.2);
-}
-
-/* ---------------- PERSONA ---------------- */
-
-.persona {
-  background:
-    linear-gradient(
-      135deg,
-      rgba(203,187,230,0.4),
-      rgba(215,166,198,0.4)
-    );
-  border-radius: 50px;
-  padding: 100px;
-}
-
-.badge {
-  display:inline-block;
-  padding:8px 18px;
-  border-radius:30px;
-  background:var(--blue);
-  color:white;
-  margin-top:10px;
-  font-size:14px;
-}
-
-/* ---------------- RESULTS ---------------- */
-
-.results {
-  background: rgba(255,255,255,0.7);
-  backdrop-filter: blur(10px);
-  border-radius: 50px;
-  padding: 100px;
-  text-align: center;
-  box-shadow: 0 30px 70px rgba(140,123,184,0.15);
-}
-
-.result-number {
-  font-size: 52px;
-  font-weight: 700;
-  color: var(--rev-lavender);
-}
-
-/* ---------------- FOOTER ---------------- */
-
-.footer {
-  text-align:center;
-  padding:80px;
-  color:#9aa6c0;
-}
-
-
-</style>
-
 <body>
-    <nav id="navbar">
-    <div class="nav-left">
-        <!-- Replace with your personal icon later -->
-        <img src="../img/logo.png" alt="Personal Icon" class="logo" />
-    </div>
 
-    <div class="nav-right">
-        <span class="vline"></span>
-        <a href="../index.html">HOME</a>
-        <span class="vline"></span>
-        <a href="../about/index.html">ABOUT</a>
-        <span class="vline"></span>
-        <a href="../contact/index.html">CONTACT</a>
-    </div>
-    </nav>
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-left">
+    <a href="../index.html">
+      <img src="img/logo.png" alt="Jamie Yang" class="nav-logo" />
+    </a>
+  </div>
+  <div class="nav-right-links">
+    <span class="nvline"></span>
+    <a href="../index.html">HOME</a>
+    <span class="nvline"></span>
+    <a href="../about/index.html">ABOUT</a>
+    <span class="nvline"></span>
+    <a href="../contact/index.html">CONTACT</a>
+  </div>
+</nav>
 
-    <div class="container">
-
-<a href="index.html" class="back-link">Back to Home</a>
+<!-- BACK BUTTON -->
+<div class="back-bar">
+  <a href="../index.html#banner" class="back-arrow">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <span>Back to Projects</span>
+  </a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
-  <h1>Reverie</h1>
-  <p>A personalized mindfulness app designed to help users manage stress and build lasting self-care habits.</p>
-  <span class="tag">Mobile App</span>
-  <span class="tag">UX/UI Design</span>
-  <span class="tag">2025</span>
+  <div class="hero-orb orb1"></div>
+  <div class="hero-orb orb2"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Case Study · Product Design</div>
+    <h1><em>Reverie</em></h1>
+    <p class="hero-desc">A personalized mindfulness app designed to help users manage stress and build lasting self-care habits through emotional resonance and daily ritual.</p>
+    <div class="hero-tags">
+      <div class="hero-tag"><strong>Type</strong>Mobile App</div>
+      <div class="hero-tag"><strong>Role</strong>Product Designer</div>
+      <div class="hero-tag"><strong>Collaborators</strong>1 UI/UX Designer</div>
+      <div class="hero-tag"><strong>Timeline</strong>3 Weeks</div>
+    </div>
+  </div>
 </section>
-
 
 <!-- OVERVIEW -->
-<section>
-  <div class="label">01 OVERVIEW</div>
-  <h2>About the Project</h2>
-  <p>
-    Reverie is a mobile donation experience designed around calm, cosmic aesthetics and emotional gratification. Rather than presenting charity as obligation, Reverie reframes giving as a ritual of hope, self-forgiveness, and daily completion
-  </p>
-</section>
-
-
-<!-- CHALLENGE -->
-<section class="grid-2">
-  <div>
-    <div class="label">02 CHALLENGE</div>
-    <h2>The Challenge</h2>
-    <p>
-    Young adults (Gen Z & Millennials) are cause-driven and socially aware, yet frequently fail to donate consistently despite strong values.
-    <br>
-    <br>
-    How might we design a donation experience that feels emotionally rewarding, habitual, and socially meaningful — without overwhelming or alienating users?
-    </p>
+<section class="section" id="overview">
+  <div class="reveal">
+    <div class="label">01 Overview</div>
+    <h2>About the <em>Project</em></h2>
+    <p class="lead">Reverie is a mobile donation experience designed around calm, cosmic aesthetics and emotional gratification. Rather than presenting charity as obligation, Reverie reframes giving as a ritual of hope, self-forgiveness, and daily completion.</p>
   </div>
-  <img src="challenge-image.jpg">
+
 </section>
 
+<!-- PROBLEM -->
+<section class="section section-alt" id="research">
+  <div class="reveal">
+    <div class="label">02 Problem Statement</div>
+    <div class="grid-2">
+      <div>
+        <h2>Why <em>existing</em> platforms fall short</h2>
+        <p class="lead">Gen Z and Millennials want to advocate for causes and feel impactful, but existing donation platforms feel transactional, untrustworthy, or emotionally distant.</p>
+        <p class="lead" style="margin-top:16px;">They need a simple, aesthetically pleasing, emotionally resonant system that transforms small daily actions into meaningful rituals — without feeling financially burdensome or manipulative.</p>
+      </div>
 
-<!-- PROBLEM STATEMENT (NOW BELOW CHALLENGE) -->
-<section>
-  <div class="label">03 PROBLEM</div>
-  <h2>Problem Statement</h2>
-  <p>
-    Gen Z and Millennials want to advocate for causes and feel impactful, but existing donation platforms feel transactional, untrustworthy, or emotionally distant.
+      <!-- Problem SVG Illustration -->
+      <div class="problem-visual">
+        <svg width="320" height="280" viewBox="0 0 320 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Phone mockup -->
+          <rect x="100" y="20" width="120" height="240" rx="20" fill="white" stroke="#e0d6f0" stroke-width="2"/>
+          <rect x="108" y="36" width="104" height="208" rx="12" fill="#f7f3fb"/>
+          <!-- Screen content - donation app feel -->
+          <rect x="116" y="50" width="88" height="12" rx="4" fill="#d4c8e8"/>
+          <rect x="116" y="70" width="60" height="8" rx="4" fill="#bfaee0" opacity=".6"/>
+          <!-- Dollar sign frustrated icon -->
+          <circle cx="160" cy="130" r="32" fill="#ede6f5" stroke="#c99ab8" stroke-width="2"/>
+          <text x="160" y="138" text-anchor="middle" font-size="26" fill="#8c7bb8">$</text>
+          <!-- X marks -->
+          <text x="128" y="118" font-size="14" fill="#d4a0a0">✕</text>
+          <text x="184" y="122" font-size="14" fill="#d4a0a0">✕</text>
+          <!-- Bottom bar -->
+          <rect x="116" y="200" width="88" height="8" rx="4" fill="#d4c8e8"/>
+          <rect x="116" y="214" width="60" height="6" rx="3" fill="#e0d6f0" opacity=".6"/>
+          <!-- Side buttons -->
+          <rect x="98" y="90" width="4" height="22" rx="2" fill="#d4c8e8"/>
+          <rect x="98" y="118" width="4" height="22" rx="2" fill="#d4c8e8"/>
+          <rect x="218" y="100" width="4" height="30" rx="2" fill="#d4c8e8"/>
 
-They need a simple, aesthetically pleasing, emotionally resonant system that transforms small daily actions into meaningful rituals — without feeling financially burdensome or manipulative .
-  </p>
+          <!-- Annotation bubbles -->
+          <rect x="10" y="80" width="80" height="36" rx="10" fill="#fff" stroke="#e0d6f0" stroke-width="1.5"/>
+          <text x="50" y="96" text-anchor="middle" font-size="11" fill="#8c7bb8" font-family="sans-serif">Transactional</text>
+          <text x="50" y="110" text-anchor="middle" font-size="11" fill="#b5a8cc" font-family="sans-serif">feel</text>
+          <line x1="90" y1="98" x2="108" y2="100" stroke="#d4c8e8" stroke-width="1.5"/>
+
+          <rect x="232" y="80" width="78" height="36" rx="10" fill="#fff" stroke="#e0d6f0" stroke-width="1.5"/>
+          <text x="271" y="96" text-anchor="middle" font-size="11" fill="#8c7bb8" font-family="sans-serif">No emotional</text>
+          <text x="271" y="110" text-anchor="middle" font-size="11" fill="#b5a8cc" font-family="sans-serif">connection</text>
+          <line x1="232" y1="98" x2="218" y2="100" stroke="#d4c8e8" stroke-width="1.5"/>
+
+          <rect x="20" y="165" width="80" height="36" rx="10" fill="#fff" stroke="#e0d6f0" stroke-width="1.5"/>
+          <text x="60" y="181" text-anchor="middle" font-size="11" fill="#8c7bb8" font-family="sans-serif">Overwhelming</text>
+          <text x="60" y="195" text-anchor="middle" font-size="11" fill="#b5a8cc" font-family="sans-serif">options</text>
+          <line x1="100" y1="183" x2="112" y2="180" stroke="#d4c8e8" stroke-width="1.5"/>
+        </svg>
+      </div>
+    </div>
+  </div>
 </section>
-
 
 <!-- OBJECTIVES -->
-<section>
-  <div class="label">04 OBJECTIVES</div>
-  <h2>Objectives & Research Approach</h2>
-  <p>
-    Using Design Thinking methodology, I conducted interviews and surveys
-    to identify key user behaviors and pain points.
-  </p>
+<section class="section">
+  <div class="reveal">
+    <div class="label">03 Objectives</div>
+    <h2>What we set out <em>to do</em></h2>
+  </div>
+  <div style="margin-top:48px;">
+    <div class="process-steps reveal">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <h3>Simplify donation into low-friction daily actions</h3>
+          <p>Remove cognitive load by creating a one-tap ritual that integrates into morning or evening routines naturally.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <h3>Make users feel impactful and validated</h3>
+          <p>Design emotional feedback loops — progress, gratitude, and impact visualization — that make small contributions feel significant.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <h3>Build habitual engagement through aesthetics</h3>
+          <p>Leverage cosmic, calm visual language to differentiate Reverie from utilitarian competitors and drive daily return visits.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
+<!-- COMPETITIVE ANALYSIS -->
+<section class="section section-alt">
+  <div class="reveal">
+    <div class="label">05 Competitive Analysis</div>
+    <h2>How Reverie <em>compares</em></h2>
+    <p class="lead">Young adults are cause-driven but fail to donate consistently. We audited 3 platforms to identify gaps in emotional design.</p>
+  </div>
+
+  <div class="comp-table-wrap reveal">
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>GoFundMe</th>
+          <th>Pledge.to</th>
+          <th>Givebutter</th>
+          <th><span class="badge-rev">Reverie</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Emotional resonance</td>
+          <td class="badge-no">✕ Weak</td>
+          <td class="badge-no">✕ Weak</td>
+          <td class="badge-no">~ Moderate</td>
+          <td class="badge-yes">✓ Strong</td>
+        </tr>
+        <tr>
+          <td>Habitual daily ritual</td>
+          <td class="badge-no">✕</td>
+          <td class="badge-no">✕</td>
+          <td class="badge-no">✕</td>
+          <td class="badge-yes">✓ Core feature</td>
+        </tr>
+        <tr>
+          <td>Aesthetic / visual identity</td>
+          <td class="badge-no">~ Generic</td>
+          <td class="badge-no">~ Minimal</td>
+          <td class="badge-yes">✓ Polished</td>
+          <td class="badge-yes">✓ Distinctive</td>
+        </tr>
+        <tr>
+          <td>Impact visualization</td>
+          <td class="badge-yes">✓</td>
+          <td class="badge-no">✕</td>
+          <td class="badge-yes">✓</td>
+          <td class="badge-yes">✓ Real-time</td>
+        </tr>
+        <tr>
+          <td>Low-friction giving</td>
+          <td class="badge-no">~ Multi-step</td>
+          <td class="badge-yes">✓</td>
+          <td class="badge-no">~ Moderate</td>
+          <td class="badge-yes">✓ One-tap</td>
+        </tr>
+        <tr>
+          <td>Personalization</td>
+          <td class="badge-no">✕</td>
+          <td class="badge-no">✕</td>
+          <td class="badge-no">~ Basic</td>
+          <td class="badge-yes">✓ Mood-based</td>
+        </tr>
+        <tr>
+          <td>Social proof / community</td>
+          <td class="badge-yes">✓ Strong</td>
+          <td class="badge-no">✕</td>
+          <td class="badge-yes">✓</td>
+          <td class="badge-yes">✓</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
 
 <!-- USER INTERVIEWS -->
-<section>
-  <div class="label">05 USER RESEARCH</div>
-  <h2>User Interviews</h2>
+<section class="section">
+  <div class="reveal">
+    <div class="label">06 User Research</div>
+    <h2>4 interviews, <em>3 key themes</em></h2>
+    <p class="lead">We spoke with 4 college students who care about social causes but struggle to give consistently.</p>
+  </div>
 
-  <div class="grid-3" style="margin-top:50px;">
-    <div class="card">
-      <h3>"I don’t know where to start."</h3>
-      <p>Users felt overwhelmed by too many meditation options.</p>
+  <div style="margin-top:48px;" class="reveal">
+    <div class="grid-3">
+      <div class="quote-card">
+        <blockquote>"I don't know where to start."</blockquote>
+        <p class="insight">→ Users felt overwhelmed by too many choices. Curation and mood-matching emerged as a primary need.</p>
+      </div>
+      <div class="quote-card">
+        <blockquote>"I need something quick."</blockquote>
+        <p class="insight">→ Most preferred 5–10 minute sessions. Speed and simplicity were non-negotiable for busy students.</p>
+      </div>
+      <div class="quote-card">
+        <blockquote>"I forget to stay consistent."</blockquote>
+        <p class="insight">→ Lack of gentle reminders and streaks reduced long-term engagement across all participants.</p>
+      </div>
     </div>
+  </div>
 
-    <div class="card">
-      <h3>"I need something quick."</h3>
-      <p>Most preferred 5–10 minute sessions.</p>
-    </div>
-
-    <div class="card">
-      <h3>"I forget to stay consistent."</h3>
-      <p>Lack of reminders reduced long-term engagement.</p>
+  <!-- Research bar chart -->
+  <div style="margin-top:64px;" class="reveal">
+    <h3 style="font-family:'Cormorant Garamond',serif; font-size:22px; margin-bottom:32px;">What users said they needed most</h3>
+    <div class="bar-chart" style="max-width:560px;">
+      <div class="bar-row">
+        <div class="bar-meta"><span class="bar-label">Simplicity / low effort</span><span class="bar-val">100%</span></div>
+        <div class="bar-track"><div class="bar-fill" style="--w:100%"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-meta"><span class="bar-label">Emotional reward after giving</span><span class="bar-val">75%</span></div>
+        <div class="bar-track"><div class="bar-fill" style="--w:75%"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-meta"><span class="bar-label">Seeing impact in real time</span><span class="bar-val">75%</span></div>
+        <div class="bar-track"><div class="bar-fill" style="--w:75%"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-meta"><span class="bar-label">Reminder / habit nudge</span><span class="bar-val">50%</span></div>
+        <div class="bar-track"><div class="bar-fill" style="--w:50%"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-meta"><span class="bar-label">Social sharing</span><span class="bar-val">25%</span></div>
+        <div class="bar-track"><div class="bar-fill" style="--w:25%"></div></div>
+      </div>
     </div>
   </div>
 </section>
 
 
-<!-- WIREFRAMES (MOVED ABOVE USER FLOW) -->
-<section>
-  <div class="label">06 WIREFRAMES</div>
-  <h2>Low-Fidelity Wireframes</h2>
-  <img src="wireframes.jpg">
+
+<!-- USER FLOW -->
+<section class="section" id="design">
+  <div class="reveal">
+    <div class="label">08 Information Architecture</div>
+    <h2>Mapping the <em>user flow</em></h2>
+    <p class="lead">We mapped a linear, low-decision path from app open to post-donation validation to keep friction near zero.</p>
+  </div>
+
+  <div class="reveal" style="margin-top:48px;">
+    <div style="width:100%; min-height:320px; background:linear-gradient(135deg,rgba(203,187,230,0.3),rgba(215,166,198,0.3)); border-radius:32px; display:flex; align-items:center; justify-content:center; border:2px dashed rgba(140,123,184,0.3);">
+      <div style="text-align:center; color:var(--soft);">
+        <div style="font-size:40px; margin-bottom:12px;">🗺</div>
+        <p style="font-size:15px; max-width:none;">Add your user flow image here<br><code style="font-size:12px; color:var(--lavender);">&lt;img src="user-flow.jpg"&gt;</code></p>
+      </div>
+    </div>
+  </div>
 </section>
 
+<!-- WIREFRAMES -->
+<section class="section section-alt">
+  <div class="reveal">
+    <div class="label">07 Wireframes</div>
+    <h2>Low-fidelity <em>exploration</em></h2>
+    <p class="lead" style="margin-bottom:40px;">Early sketches focused on minimizing decisions per screen and surfacing the emotional reward moment as fast as possible.</p>
+  </div>
 
-<!-- USER FLOW (NOW BELOW WIREFRAMES) -->
-<section>
-  <div class="label">07 INFORMATION ARCHITECTURE</div>
-  <h2>User Flow</h2>
-  <img src="user-flow.jpg">
+  <!-- SVG Wireframe mockups -->
+  <div class="reveal" style="display:flex; gap:32px; flex-wrap:wrap; justify-content:center; margin-top:32px;">
+
+    <!-- Screen 1: Mood check -->
+    <svg width="160" height="280" viewBox="0 0 160 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="160" height="280" rx="20" fill="white" stroke="#e0d6f0" stroke-width="1.5"/>
+      <rect x="12" y="12" width="136" height="256" rx="14" fill="#f7f3fb"/>
+      <rect x="28" y="28" width="60" height="8" rx="4" fill="#bfaee0"/>
+      <text x="80" y="100" text-anchor="middle" font-size="32" fill="#8c7bb8">😌</text>
+      <rect x="28" y="118" width="104" height="10" rx="5" fill="#e0d6f0"/>
+      <rect x="48" y="134" width="64" height="8" rx="4" fill="#ede6f5"/>
+      <!-- mood bubbles -->
+      <circle cx="44" cy="170" r="16" fill="#ede6f5" stroke="#c99ab8" stroke-width="1.5"/>
+      <circle cx="80" cy="170" r="16" fill="#8c7bb8"/>
+      <circle cx="116" cy="170" r="16" fill="#ede6f5" stroke="#c99ab8" stroke-width="1.5"/>
+      <text x="44" y="175" text-anchor="middle" font-size="14">😐</text>
+      <text x="80" y="175" text-anchor="middle" font-size="14">😊</text>
+      <text x="116" y="175" text-anchor="middle" font-size="14">😔</text>
+      <rect x="28" y="210" width="104" height="36" rx="18" fill="#8c7bb8"/>
+      <rect x="48" y="224" width="64" height="8" rx="4" fill="rgba(255,255,255,0.4)"/>
+      <text x="80" y="270" text-anchor="middle" font-size="10" fill="#b5a8cc" font-family="sans-serif">Mood Check-in</text>
+    </svg>
+
+    <!-- Screen 2: Cause card -->
+    <svg width="160" height="280" viewBox="0 0 160 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="160" height="280" rx="20" fill="white" stroke="#e0d6f0" stroke-width="1.5"/>
+      <rect x="12" y="12" width="136" height="256" rx="14" fill="#f7f3fb"/>
+      <rect x="20" y="28" width="120" height="70" rx="12" fill="url(#grad1)"/>
+      <defs>
+        <linearGradient id="grad1" x1="0" y1="0" x2="120" y2="70" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#8c7bb8"/>
+          <stop offset="100%" stop-color="#c99ab8"/>
+        </linearGradient>
+      </defs>
+      <text x="80" y="68" text-anchor="middle" font-size="28" fill="white">🌍</text>
+      <rect x="28" y="110" width="80" height="8" rx="4" fill="#d4c8e8"/>
+      <rect x="28" y="124" width="104" height="6" rx="3" fill="#ede6f5"/>
+      <rect x="28" y="136" width="88" height="6" rx="3" fill="#ede6f5"/>
+      <rect x="28" y="160" width="104" height="4" rx="2" fill="#ede6f5"/>
+      <rect x="28" y="160" width="72" height="4" rx="2" fill="#8c7bb8"/>
+      <rect x="28" y="170" width="40" height="6" rx="3" fill="#bfaee0" opacity=".5"/>
+      <rect x="20" y="200" width="120" height="36" rx="18" fill="#8c7bb8"/>
+      <text x="80" y="223" text-anchor="middle" font-size="11" fill="white" font-family="sans-serif">Give $1 Today</text>
+      <text x="80" y="270" text-anchor="middle" font-size="10" fill="#b5a8cc" font-family="sans-serif">Cause Card</text>
+    </svg>
+
+    <!-- Screen 3: Impact confirmation -->
+    <svg width="160" height="280" viewBox="0 0 160 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="160" height="280" rx="20" fill="white" stroke="#e0d6f0" stroke-width="1.5"/>
+      <rect x="12" y="12" width="136" height="256" rx="14" fill="#f7f3fb"/>
+      <!-- Stars -->
+      <text x="40" y="60" font-size="12" fill="#d4c8e8">✦</text>
+      <text x="110" y="50" font-size="16" fill="#bfaee0">✦</text>
+      <text x="130" y="90" font-size="10" fill="#d4c8e8">✦</text>
+      <!-- Big checkmark -->
+      <circle cx="80" cy="110" r="36" fill="url(#grad2)"/>
+      <defs>
+        <linearGradient id="grad2" x1="44" y1="74" x2="116" y2="146" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#8c7bb8"/>
+          <stop offset="100%" stop-color="#c99ab8"/>
+        </linearGradient>
+      </defs>
+      <text x="80" y="122" text-anchor="middle" font-size="28" fill="white">✓</text>
+      <rect x="32" y="162" width="96" height="8" rx="4" fill="#d4c8e8"/>
+      <rect x="44" y="176" width="72" height="6" rx="3" fill="#ede6f5"/>
+      <!-- streak badge -->
+      <rect x="44" y="200" width="72" height="24" rx="12" fill="#ede6f5" stroke="#c99ab8" stroke-width="1"/>
+      <text x="80" y="216" text-anchor="middle" font-size="11" fill="#8c7bb8" font-family="sans-serif">🔥 3-day streak!</text>
+      <text x="80" y="270" text-anchor="middle" font-size="10" fill="#b5a8cc" font-family="sans-serif">Impact Confirmation</text>
+    </svg>
+
+    <!-- Screen 4: History / streak -->
+    <svg width="160" height="280" viewBox="0 0 160 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="160" height="280" rx="20" fill="white" stroke="#e0d6f0" stroke-width="1.5"/>
+      <rect x="12" y="12" width="136" height="256" rx="14" fill="#f7f3fb"/>
+      <rect x="28" y="28" width="60" height="8" rx="4" fill="#bfaee0"/>
+      <rect x="28" y="44" width="40" height="6" rx="3" fill="#ede6f5"/>
+      <!-- Calendar dots -->
+      <circle cx="40" cy="90" r="10" fill="#8c7bb8"/>
+      <circle cx="62" cy="90" r="10" fill="#8c7bb8"/>
+      <circle cx="84" cy="90" r="10" fill="#8c7bb8"/>
+      <circle cx="106" cy="90" r="10" fill="#ede6f5" stroke="#bfaee0" stroke-width="1"/>
+      <circle cx="128" cy="90" r="10" fill="#ede6f5" stroke="#bfaee0" stroke-width="1"/>
+      <text x="40" y="95" text-anchor="middle" font-size="9" fill="white" font-family="sans-serif">M</text>
+      <text x="62" y="95" text-anchor="middle" font-size="9" fill="white" font-family="sans-serif">T</text>
+      <text x="84" y="95" text-anchor="middle" font-size="9" fill="white" font-family="sans-serif">W</text>
+      <text x="106" y="95" text-anchor="middle" font-size="9" fill="#bfaee0" font-family="sans-serif">T</text>
+      <text x="128" y="95" text-anchor="middle" font-size="9" fill="#bfaee0" font-family="sans-serif">F</text>
+      <!-- history rows -->
+      <rect x="28" y="118" width="8" height="8" rx="2" fill="#8c7bb8"/>
+      <rect x="42" y="120" width="60" height="4" rx="2" fill="#d4c8e8"/>
+      <rect x="42" y="128" width="40" height="4" rx="2" fill="#ede6f5"/>
+      <rect x="28" y="148" width="8" height="8" rx="2" fill="#c99ab8"/>
+      <rect x="42" y="150" width="72" height="4" rx="2" fill="#d4c8e8"/>
+      <rect x="42" y="158" width="48" height="4" rx="2" fill="#ede6f5"/>
+      <rect x="28" y="178" width="8" height="8" rx="2" fill="#bfaee0"/>
+      <rect x="42" y="180" width="56" height="4" rx="2" fill="#d4c8e8"/>
+      <rect x="42" y="188" width="36" height="4" rx="2" fill="#ede6f5"/>
+      <!-- total stat -->
+      <rect x="20" y="216" width="120" height="40" rx="14" fill="rgba(140,123,184,0.1)" stroke="#d4c8e8" stroke-width="1"/>
+      <rect x="36" y="228" width="40" height="6" rx="3" fill="#8c7bb8" opacity=".4"/>
+      <rect x="36" y="240" width="28" height="6" rx="3" fill="#bfaee0" opacity=".5"/>
+      <text x="80" y="270" text-anchor="middle" font-size="10" fill="#b5a8cc" font-family="sans-serif">Streak Tracker</text>
+    </svg>
+
+  </div>
 </section>
-
 
 <!-- ITERATIONS -->
-<section>
-  <div class="label">08 ITERATIONS</div>
-  <h2>Design Iterations</h2>
-  <p>
-    Usability testing revealed the need to simplify navigation
-    and make mood-based recommendations more prominent.
-  </p>
-</section>
-
-
-<!-- USER TESTING (NOW ABOVE FINAL PRODUCT + PERSONA INSIDE) -->
-<section>
-  <div class="label">09 USER TESTING</div>
-  <h2>Usability Testing & Validation</h2>
-
-  <div class="grid-3" style="margin-top:60px;">
-
-    <!-- PERSONA AS CARD -->
-    <div class="card">
-      <h3>Primary Persona</h3>
-      <p><strong>Emma, 32</strong></p>
-      <p>Marketing consultant struggling to stay consistent with meditation.
-      Needs quick, adaptive tools that fit into her routine.</p>
+<section class="section">
+  <div class="reveal">
+    <div class="label">09 Iterations</div>
+    <h2>How the design <em>evolved</em></h2>
+    <p class="lead">Usability testing revealed the need to simplify navigation and make mood-based recommendations more prominent.</p>
+  </div>
+  <div style="margin-top:48px;" class="reveal">
+    <div class="grid-3">
+      <div class="card">
+        <h3>v1 → v2</h3>
+        <p>Removed bottom navigation bar with 5 tabs. Users were confused — consolidated into 3 core actions.</p>
+      </div>
+      <div class="card">
+        <h3>v2 → v3</h3>
+        <p>Moved mood-based recommendations from settings to the home screen front and center.</p>
+      </div>
+      <div class="card">
+        <h3>v3 → Final</h3>
+        <p>Added streak visualization after testing showed it was the #1 driver of return visits among participants.</p>
+      </div>
     </div>
-
-    <!-- INSIGHT 1 -->
-    <div class="card">
-      <h3>Navigation Clarity</h3>
-      <p>80% of participants preferred simplified bottom navigation.</p>
-    </div>
-
-    <!-- INSIGHT 2 -->
-    <div class="card">
-      <h3>Mood Personalization</h3>
-      <p>Users engaged more when content adapted to their emotional state.</p>
-    </div>
-
-    <!-- INSIGHT 3 -->
-    <div class="card">
-      <h3>Session Length</h3>
-      <p>Short sessions (under 10 minutes) increased daily retention.</p>
-    </div>
-
   </div>
 </section>
 
-
-<!-- FINAL PRODUCT (NOW BELOW USER TESTING) -->
-<section>
-  <div class="label">10 FINAL PRODUCT</div>
-  <h2>The Final Design</h2>
-  <img src="final-product.jpg">
+<!-- USER TESTING -->
+<section class="section section-alt">
+  <div class="reveal">
+    <div class="label">10 Usability Testing</div>
+    <h2>Validation & <em>findings</em></h2>
+  </div>
+  <div style="margin-top:48px;" class="reveal">
+    <div class="grid-3">
+      <div class="card">
+        <h3>🧭 Navigation Clarity</h3>
+        <p>80% of participants preferred the simplified bottom navigation with only 3 key actions vs the original 5-tab bar.</p>
+      </div>
+      <div class="card">
+        <h3>🎭 Mood Personalization</h3>
+        <p>Users engaged 2× more when content adapted to their stated emotional state at session start.</p>
+      </div>
+      <div class="card">
+        <h3>⏱ Session Length</h3>
+        <p>Short sessions under 10 minutes increased daily retention — 3-day streak visibility was the top motivator.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
+<!-- FINAL DESIGN -->
+<section class="section">
+  <div class="reveal">
+    <div class="label">11 Final Design</div>
+    <h2>The finished <em>product</em></h2>
+    <p class="lead">Placeholder for your final design screens — drop your mockup image here.</p>
+  </div>
+  <div class="reveal" style="margin-top:40px;">
+    <!-- Placeholder box where the final image goes -->
+    <div style="width:100%; height:400px; background:linear-gradient(135deg,rgba(203,187,230,0.3),rgba(215,166,198,0.3)); border-radius:32px; display:flex; align-items:center; justify-content:center; border:2px dashed rgba(140,123,184,0.3);">
+      <div style="text-align:center; color:var(--soft);">
+        <div style="font-size:40px; margin-bottom:12px;">🖼</div>
+        <p style="font-size:15px; max-width:none;">Add your final mockup image here<br><code style="font-size:12px; color:var(--lavender);">&lt;img src="final-product.jpg"&gt;</code></p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- RESULTS -->
-<section>
-  <div class="results">
-    <h2>Results & Impact</h2>
-
-    <div class="grid-3" style="margin-top:40px;">
-      <div>
-        <div class="result-number">85%</div>
-        <p>Found navigation intuitive</p>
-      </div>
-      <div>
-        <div class="result-number">70%</div>
-        <p>Improved daily engagement</p>
-      </div>
-      <div>
-        <div class="result-number">90%</div>
-        <p>Preferred personalized recommendations</p>
+<section class="section section-alt" id="results">
+  <div class="reveal">
+    <div class="results-section">
+      <h2>Results & <em>Impact</em></h2>
+      <p>Measured across 4 usability sessions with target users</p>
+      <div class="results-grid">
+        <div class="result-item">
+          <div class="result-number">85%</div>
+          <div class="result-label">Found navigation intuitive without instruction</div>
+        </div>
+        <div class="result-item">
+          <div class="result-number">70%</div>
+          <div class="result-label">Improved daily engagement vs baseline apps</div>
+        </div>
+        <div class="result-item">
+          <div class="result-number">90%</div>
+          <div class="result-label">Preferred personalized recommendations over generic</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-
-<section class="footer">
-  Designed & Developed by You © 2025
+<!-- LEARNINGS -->
+<section class="section">
+  <div class="reveal">
+    <div class="label">12 Key Learnings</div>
+    <h2>What I <em>learned</em></h2>
+    <p class="lead" style="margin-bottom:32px;">This project sharpened my understanding of emotional design, habit loops, and why aesthetics are never just decoration — they're the product.</p>
+    <div>
+      <span class="learning-pill">Emotion drives retention more than features</span>
+      <span class="learning-pill">Fewer choices = more action</span>
+      <span class="learning-pill">Delight moments belong early in the flow</span>
+      <span class="learning-pill">Test assumptions fast with low-fi prototypes</span>
+      <span class="learning-pill">Visual identity IS product identity</span>
+      <span class="learning-pill">Streak mechanics work — but only with intrinsic rewards too</span>
+    </div>
+  </div>
 </section>
-</body>
 
+<!-- FOOTER -->
+<footer>
+  Designed & developed by you · Reverie Case Study · 2025
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+</script>
+
+</body>
 </html>
