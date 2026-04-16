@@ -100,7 +100,7 @@ body {
   padding-bottom: 6px;              
 }
 
-#text .highlight:hover {
+#text .highlight {
   color: #FF80B4;
 }
 
@@ -189,6 +189,16 @@ body {
 
 .info a:hover{
     color:#FF80B4;  
+}
+
+/* ── FOOTER ── */
+.footer {
+  font-size: 1.4rem;
+  text-align: center;
+  color: #aaa;
+  padding: 40px 32px;
+  border-top: 1px solid #e5e5e5;
+  margin-top: 40px;
 }
 
 
@@ -301,7 +311,7 @@ body {
 .about-section {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 60px 32px;
+  padding: 0px 32px;
 }
 
 .about-intro p {

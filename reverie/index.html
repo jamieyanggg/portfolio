@@ -33,11 +33,15 @@
 
     /* ── NAV ── */
     #navbar {
-      position: fixed; top:0; left:0; right:0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
       height: 64px;
       background: #fff;
       padding: 0 32px;
-      display: flex; align-items: center;
+      display: flex;
+      align-items: center;
       justify-content: space-between;
       border-bottom: 1px solid #e5e5e5;
       z-index: 1000;
@@ -54,10 +58,9 @@
       gap: 24px;
     }
     #navbar a {
-      font-family: 'Poppins', sans-serif;
       color: #111;
       text-decoration: none;
-      font-size: 16px;
+      font-size: 14px;
       letter-spacing: 0.08em;
       font-weight: 500;
     }
@@ -250,12 +253,12 @@
     .flow-row { display:flex; align-items:center; gap:0; flex-wrap:wrap; justify-content:center; }
     .flow-node {
       background: var(--card);
-      border: 1px solid rgba(140,123,184,0.25);
       border-radius: 16px;
       padding: 18px 24px;
       text-align:center; min-width:130px;
       box-shadow: 0 4px 16px rgba(140,123,184,0.1);
     }
+    .reveal .img {width: 200px; height: auto;}
     .flow-node .icon { font-size:24px; margin-bottom:6px; }
     .flow-node span { font-size:13px; font-weight:500; color:var(--deep); display:block; }
     .flow-arrow {
@@ -638,8 +641,6 @@
   </div>
 </section>
 
-
-
 <!-- USER FLOW -->
 <section class="section" id="design">
   <div class="reveal">
@@ -649,10 +650,8 @@
   </div>
 
   <div class="reveal" style="margin-top:48px;">
-    <div style="width:100%; min-height:320px; background:linear-gradient(135deg,rgba(203,187,230,0.3),rgba(215,166,198,0.3)); border-radius:32px; display:flex; align-items:center; justify-content:center; border:2px dashed rgba(140,123,184,0.3);">
-      <div style="text-align:center; color:var(--soft);">
-        <div style="font-size:40px; margin-bottom:12px;">🗺</div>
-        <p style="font-size:15px; max-width:none;">Add your user flow image here<br><code style="font-size:12px; color:var(--lavender);">&lt;img src="user-flow.jpg"&gt;</code></p>
+      <div style="text-align:center;">
+        <img src="img/reverieflow.png" style="width: 50%; max-width: 500px;">
       </div>
     </div>
   </div>
@@ -668,108 +667,7 @@
 
   <!-- SVG Wireframe mockups -->
   <div class="reveal" style="display:flex; gap:32px; flex-wrap:wrap; justify-content:center; margin-top:32px;">
-
-    <!-- Screen 1: Mood check -->
-    <svg width="160" height="280" viewBox="0 0 160 280" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="160" height="280" rx="20" fill="white" stroke="#e0d6f0" stroke-width="1.5"/>
-      <rect x="12" y="12" width="136" height="256" rx="14" fill="#f7f3fb"/>
-      <rect x="28" y="28" width="60" height="8" rx="4" fill="#bfaee0"/>
-      <text x="80" y="100" text-anchor="middle" font-size="32" fill="#8c7bb8">😌</text>
-      <rect x="28" y="118" width="104" height="10" rx="5" fill="#e0d6f0"/>
-      <rect x="48" y="134" width="64" height="8" rx="4" fill="#ede6f5"/>
-      <!-- mood bubbles -->
-      <circle cx="44" cy="170" r="16" fill="#ede6f5" stroke="#c99ab8" stroke-width="1.5"/>
-      <circle cx="80" cy="170" r="16" fill="#8c7bb8"/>
-      <circle cx="116" cy="170" r="16" fill="#ede6f5" stroke="#c99ab8" stroke-width="1.5"/>
-      <text x="44" y="175" text-anchor="middle" font-size="14">😐</text>
-      <text x="80" y="175" text-anchor="middle" font-size="14">😊</text>
-      <text x="116" y="175" text-anchor="middle" font-size="14">😔</text>
-      <rect x="28" y="210" width="104" height="36" rx="18" fill="#8c7bb8"/>
-      <rect x="48" y="224" width="64" height="8" rx="4" fill="rgba(255,255,255,0.4)"/>
-      <text x="80" y="270" text-anchor="middle" font-size="10" fill="#b5a8cc" font-family="sans-serif">Mood Check-in</text>
-    </svg>
-
-    <!-- Screen 2: Cause card -->
-    <svg width="160" height="280" viewBox="0 0 160 280" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="160" height="280" rx="20" fill="white" stroke="#e0d6f0" stroke-width="1.5"/>
-      <rect x="12" y="12" width="136" height="256" rx="14" fill="#f7f3fb"/>
-      <rect x="20" y="28" width="120" height="70" rx="12" fill="url(#grad1)"/>
-      <defs>
-        <linearGradient id="grad1" x1="0" y1="0" x2="120" y2="70" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stop-color="#8c7bb8"/>
-          <stop offset="100%" stop-color="#c99ab8"/>
-        </linearGradient>
-      </defs>
-      <text x="80" y="68" text-anchor="middle" font-size="28" fill="white">🌍</text>
-      <rect x="28" y="110" width="80" height="8" rx="4" fill="#d4c8e8"/>
-      <rect x="28" y="124" width="104" height="6" rx="3" fill="#ede6f5"/>
-      <rect x="28" y="136" width="88" height="6" rx="3" fill="#ede6f5"/>
-      <rect x="28" y="160" width="104" height="4" rx="2" fill="#ede6f5"/>
-      <rect x="28" y="160" width="72" height="4" rx="2" fill="#8c7bb8"/>
-      <rect x="28" y="170" width="40" height="6" rx="3" fill="#bfaee0" opacity=".5"/>
-      <rect x="20" y="200" width="120" height="36" rx="18" fill="#8c7bb8"/>
-      <text x="80" y="223" text-anchor="middle" font-size="11" fill="white" font-family="sans-serif">Give $1 Today</text>
-      <text x="80" y="270" text-anchor="middle" font-size="10" fill="#b5a8cc" font-family="sans-serif">Cause Card</text>
-    </svg>
-
-    <!-- Screen 3: Impact confirmation -->
-    <svg width="160" height="280" viewBox="0 0 160 280" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="160" height="280" rx="20" fill="white" stroke="#e0d6f0" stroke-width="1.5"/>
-      <rect x="12" y="12" width="136" height="256" rx="14" fill="#f7f3fb"/>
-      <!-- Stars -->
-      <text x="40" y="60" font-size="12" fill="#d4c8e8">✦</text>
-      <text x="110" y="50" font-size="16" fill="#bfaee0">✦</text>
-      <text x="130" y="90" font-size="10" fill="#d4c8e8">✦</text>
-      <!-- Big checkmark -->
-      <circle cx="80" cy="110" r="36" fill="url(#grad2)"/>
-      <defs>
-        <linearGradient id="grad2" x1="44" y1="74" x2="116" y2="146" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stop-color="#8c7bb8"/>
-          <stop offset="100%" stop-color="#c99ab8"/>
-        </linearGradient>
-      </defs>
-      <text x="80" y="122" text-anchor="middle" font-size="28" fill="white">✓</text>
-      <rect x="32" y="162" width="96" height="8" rx="4" fill="#d4c8e8"/>
-      <rect x="44" y="176" width="72" height="6" rx="3" fill="#ede6f5"/>
-      <!-- streak badge -->
-      <rect x="44" y="200" width="72" height="24" rx="12" fill="#ede6f5" stroke="#c99ab8" stroke-width="1"/>
-      <text x="80" y="216" text-anchor="middle" font-size="11" fill="#8c7bb8" font-family="sans-serif">🔥 3-day streak!</text>
-      <text x="80" y="270" text-anchor="middle" font-size="10" fill="#b5a8cc" font-family="sans-serif">Impact Confirmation</text>
-    </svg>
-
-    <!-- Screen 4: History / streak -->
-    <svg width="160" height="280" viewBox="0 0 160 280" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="160" height="280" rx="20" fill="white" stroke="#e0d6f0" stroke-width="1.5"/>
-      <rect x="12" y="12" width="136" height="256" rx="14" fill="#f7f3fb"/>
-      <rect x="28" y="28" width="60" height="8" rx="4" fill="#bfaee0"/>
-      <rect x="28" y="44" width="40" height="6" rx="3" fill="#ede6f5"/>
-      <!-- Calendar dots -->
-      <circle cx="40" cy="90" r="10" fill="#8c7bb8"/>
-      <circle cx="62" cy="90" r="10" fill="#8c7bb8"/>
-      <circle cx="84" cy="90" r="10" fill="#8c7bb8"/>
-      <circle cx="106" cy="90" r="10" fill="#ede6f5" stroke="#bfaee0" stroke-width="1"/>
-      <circle cx="128" cy="90" r="10" fill="#ede6f5" stroke="#bfaee0" stroke-width="1"/>
-      <text x="40" y="95" text-anchor="middle" font-size="9" fill="white" font-family="sans-serif">M</text>
-      <text x="62" y="95" text-anchor="middle" font-size="9" fill="white" font-family="sans-serif">T</text>
-      <text x="84" y="95" text-anchor="middle" font-size="9" fill="white" font-family="sans-serif">W</text>
-      <text x="106" y="95" text-anchor="middle" font-size="9" fill="#bfaee0" font-family="sans-serif">T</text>
-      <text x="128" y="95" text-anchor="middle" font-size="9" fill="#bfaee0" font-family="sans-serif">F</text>
-      <!-- history rows -->
-      <rect x="28" y="118" width="8" height="8" rx="2" fill="#8c7bb8"/>
-      <rect x="42" y="120" width="60" height="4" rx="2" fill="#d4c8e8"/>
-      <rect x="42" y="128" width="40" height="4" rx="2" fill="#ede6f5"/>
-      <rect x="28" y="148" width="8" height="8" rx="2" fill="#c99ab8"/>
-      <rect x="42" y="150" width="72" height="4" rx="2" fill="#d4c8e8"/>
-      <rect x="42" y="158" width="48" height="4" rx="2" fill="#ede6f5"/>
-      <rect x="28" y="178" width="8" height="8" rx="2" fill="#bfaee0"/>
-      <rect x="42" y="180" width="56" height="4" rx="2" fill="#d4c8e8"/>
-      <rect x="42" y="188" width="36" height="4" rx="2" fill="#ede6f5"/>
-      <!-- total stat -->
-      <rect x="20" y="216" width="120" height="40" rx="14" fill="rgba(140,123,184,0.1)" stroke="#d4c8e8" stroke-width="1"/>
-      <rect x="36" y="228" width="40" height="6" rx="3" fill="#8c7bb8" opacity=".4"/>
-      <rect x="36" y="240" width="28" height="6" rx="3" fill="#bfaee0" opacity=".5"/>
-      <text x="80" y="270" text-anchor="middle" font-size="10" fill="#b5a8cc" font-family="sans-serif">Streak Tracker</text>
-    </svg>
+    <img src="img/lowfi.jpg" alt="low-fi wireframe" width="100%" height="auto">
 
   </div>
 </section>
@@ -828,16 +726,53 @@
   <div class="reveal">
     <div class="label">11 Final Design</div>
     <h2>The finished <em>product</em></h2>
-    <p class="lead">Placeholder for your final design screens — drop your mockup image here.</p>
+    <p class="lead">Five core screens that bring reverie to life — from the first breath to sending ripples into the world.</p>
   </div>
-  <div class="reveal" style="margin-top:40px;">
-    <!-- Placeholder box where the final image goes -->
-    <div style="width:100%; height:400px; background:linear-gradient(135deg,rgba(203,187,230,0.3),rgba(215,166,198,0.3)); border-radius:32px; display:flex; align-items:center; justify-content:center; border:2px dashed rgba(140,123,184,0.3);">
-      <div style="text-align:center; color:var(--soft);">
-        <div style="font-size:40px; margin-bottom:12px;">🖼</div>
-        <p style="font-size:15px; max-width:none;">Add your final mockup image here<br><code style="font-size:12px; color:var(--lavender);">&lt;img src="final-product.jpg"&gt;</code></p>
+
+  <div class="reveal" style="margin-top: 64px;">
+
+    <!-- Row 1: hero splash centered, large -->
+    <div style="display:flex; justify-content:center; margin-bottom:48px;">
+      <div style="position:relative; width:220px;">
+        <img src="img/reverie.png" alt="Reverie splash screen"
+          style="width:100%; border-radius:36px; box-shadow:0 24px 64px rgba(90,74,126,0.28);">
+        <p style="text-align:center; margin-top:14px; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--mist);">Splash Screen</p>
       </div>
     </div>
+
+    <!-- Row 2: three screens side by side -->
+    <div style="display:flex; justify-content:center; gap:32px; flex-wrap:wrap; margin-bottom:48px; align-items:flex-end;">
+      <div style="width:180px; text-align:center;">
+        <img src="img/checkin.png" alt="Mood check-in"
+          style="width:100%; border-radius:30px; box-shadow:0 20px 48px rgba(90,74,126,0.22);">
+        <p style="margin-top:12px; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--mist);">Mood Check-In</p>
+      </div>
+      <div style="width:220px; text-align:center; position:relative; top:-24px;">
+        <img src="img/main_screen.png" alt="Main home screen"
+          style="width:100%; border-radius:36px; box-shadow:0 28px 72px rgba(90,74,126,0.3);">
+        <p style="margin-top:12px; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--mist);">Home · Idle State</p>
+      </div>
+      <div style="width:180px; text-align:center;">
+        <img src="img/main screen - wish - 3-portrait.png" alt="Make a wish"
+          style="width:100%; border-radius:30px; box-shadow:0 20px 48px rgba(90,74,126,0.22);">
+        <p style="margin-top:12px; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--mist);">Make a Wish</p>
+      </div>
+    </div>
+
+    <!-- Row 3: two screens side by side -->
+    <div style="display:flex; justify-content:center; gap:32px; flex-wrap:wrap; align-items:flex-end;">
+      <div style="width:190px; text-align:center;">
+        <img src="img/main screen -5-portrait.png" alt="Droplet jar"
+          style="width:100%; border-radius:32px; box-shadow:0 20px 48px rgba(90,74,126,0.22);">
+        <p style="margin-top:12px; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--mist);">Send Ripples</p>
+      </div>
+      <div style="width:190px; text-align:center; position:relative; top:-16px;">
+        <img src="img/jar-portrait.png" alt="Karma map"
+          style="width:100%; border-radius:32px; box-shadow:0 20px 48px rgba(90,74,126,0.22);">
+        <p style="margin-top:12px; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--mist);">Karma Map</p>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -881,11 +816,6 @@
     </div>
   </div>
 </section>
-
-<!-- FOOTER -->
-<footer>
-  Designed & developed by you · Reverie Case Study · 2025
-</footer>
 
 <script>
   // Scroll reveal

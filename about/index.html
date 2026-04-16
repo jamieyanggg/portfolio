@@ -32,171 +32,282 @@
     </nav>
     
     <div class="wrapper">
-        <div class="controls-btn">
-            <div class="next-wrapper">
-                <svg xmlns="http://www.w3.org/2000/svg" style="transform: rotate(180deg);" viewBox="0 0 24 24"
-                    width="24" height="24" class="next">
-                    <path d="M9 18v-5l8 5V6l-8 5V6H7v12z"></path>
-                </svg>
-            </div>
-            <div class="last-wrapper">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" class="last">
-                    <path d="M9 18v-5l8 5V6l-8 5V6H7v12z"></path>
-                </svg>
-            </div>
-        </div>
-        <div class="describe">
-        </div>
-        <div class="card-slide">
-        </div>
+  <!-- LEFT: text describe -->
+  <div class="describe" id="describe"></div>
+
+  <!-- CONTROLS: prev/next circles -->
+  <div class="controls-btn">
+    <div class="ctrl-circle next" id="nextBtn" title="Next">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 18v-5l8 5V6l-8 5V6H7v12z" fill="rgba(0,0,0,0.5)"/>
+      </svg>
     </div>
+    <div class="ctrl-circle prev" id="lastBtn" title="Previous">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15 18v-5l-8 5V6l8 5V6h2v12z" fill="rgba(0,0,0,0.5)"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- RIGHT: card stack -->
+  <div class="card-slide" id="cardSlide">
+    <div class="drag-hint">drag to explore</div>
+  </div>
+</div>
 
     <script src="./data.js"></script>
     <script>
-        const dwellPosition = window.innerWidth
-        const cardSlide = document.querySelector('.card-slide')
-        const describe = document.querySelector('.describe')
-        const nextWrapper = document.querySelector('.next-wrapper')
-        const lastWrapper = document.querySelector('.last-wrapper')
-        const last = document.querySelector('.last')
-        let cardStackWrapper
-        let cardFlagArray = []
-        let draggedElement = null;
-        const bgColor = ['255,208,213', '164,201,216', '255,188,75']
-        
-        function dragMouseDown(e) {
-            isDragging = true;
-            e = e || window.event;
-            e.preventDefault();
-            draggedElement = e.target
-            pos3 = e.clientX;
-            pos4 = e.clientY;
-            draggedElement.classList.remove('card-stack-wrapper-animating-DMU')
-            document.onmouseup = closeDragElement;
-            document.onmousemove = elementDrag;
-        }
-      
-        function elementDrag(e) {
-            e = e || window.event;
-            e.preventDefault();
-            draggedElement.style.transition = ''
-            pos1 = pos3 - e.clientX;
-            pos2 = pos4 - e.clientY;
-            pos3 = e.clientX;
-            pos4 = e.clientY;
-            const moveLegth = draggedElement.offsetLeft - pos1
-            draggedElement.style.transform = `rotateX(0) rotateY(0) rotateZ(${moveLegth / dwellPosition * 10}deg) scale(1)`
-            draggedElement.style.left = moveLegth + "px";
-        }
-       
-        function closeDragElement(e) {
-            draggedElement.style.transition = '.5s ease'
-            document.onmouseup = null;
-            document.onmousemove = null;
-           
-            if (Number(draggedElement.style.left.replace("px", "")) > 200 || Number(draggedElement.style.left.replace("px", "")) < -200) {
-                
-                Number(draggedElement.style.left.replace("px", "")) > 0 ? draggedElement.style.left = dwellPosition + 'px' : draggedElement.style.left = -dwellPosition + 'px';
-                moveFun()
-            }
+        const dwellPosition = window.innerWidth;
+const cardSlide = document.getElementById('cardSlide');
+const describe  = document.getElementById('describe');
+const nextBtn   = document.getElementById('nextBtn');
+const lastBtn   = document.getElementById('lastBtn');
+let cardStackWrapper = [];
+let cardFlagArray    = [];
+let draggedElement   = null;
+let pos1=0, pos2=0, pos3=0, pos4=0;
+const total = cardInfo.length;
 
-            else {
-                draggedElement.style.left = "0";
-            }
-        }
-       
-        function moveFun() {
-            
-            cardFlagArray.unshift(cardStackWrapper.pop())
-            
-            if (cardStackWrapper.length) {
-                
-                describe.classList.remove('describe-appear-animation')
-                describe.classList.add('describe-disappear-animation')
-                draggedElement.style.boxShadow = ''
-                setTimeout(() => {
-                    describe.innerHTML = `<div class="tips">${cardInfo[cardStackWrapper.length - 1].tips}</div>
-                                  <div class="content-text">${cardInfo[cardStackWrapper.length - 1].contentText}</div>`
-                    document.body.style.background = `rgb(${cardInfo[cardStackWrapper.length - 1].bgColor})`
-                    cardStackWrapper[cardStackWrapper.length - 1].style.transition = '.5s ease'
-                    cardStackWrapper[cardStackWrapper.length - 1].style.transform = 'rotateX(0) rotateY(0) rotateZ(0) scale(1)'
-                    cardStackWrapper[cardStackWrapper.length - 1].style.boxShadow = '2px 5px 27px rgba(0, 0, 0, 0.32)'
-                    describe.classList.add('describe-appear-animation')
-                    describe.classList.remove('describe-disappear-animation')
-                }, 500)
+function updateDescribe(idx) {
+  const info = cardInfo[idx];
+  describe.innerHTML =
+    '<div class="tips">' + info.tips + '</div>' +
+    '<div class="contentText">' + info.contentText + '</div>';
+  document.body.style.background = 'rgb(' + info.bgColor + ')';
+}
 
-            } else {
-                
-                cardStackWrapper = cardFlagArray
-                cardFlagArray = []
-                
-                describe.classList.remove('describe-appear-animation')
-                describe.classList.add('describe-disappear-animation')
-                setTimeout(() => {
-                    describe.innerHTML = `<div class="tips">${cardInfo[cardStackWrapper.length - 1].tips}</div>
-                                  <div class="content-text">${cardInfo[cardStackWrapper.length - 1].contentText}</div>`
-                    document.body.style.background = `rgb(${cardInfo[cardStackWrapper.length - 1].bgColor})`
-                    describe.classList.add('describe-appear-animation')
-                    describe.classList.remove('describe-disappear-animation')
-                    cardStackWrapper.forEach((dom, index) => {
-                        
-                        if (index !== cardStackWrapper.length - 1) {
-                            dom.style.transform = 'rotateX(5deg) rotateY(0.438122deg) rotateZ(4.38122deg) scale(1)'
-                        } else {
-                            dom.style.transform = ''
-                        }
-                        dom.style.transition = `.${5 + index}s`
-                        dom.style.left = 0
-                    })
-                }, 500)
-            }
-            lastBtnColor()
-        }
-        function nextFun() {
-            draggedElement = cardStackWrapper[cardStackWrapper.length - 1]
-            draggedElement.style.transition = '.5s ease'
-            draggedElement.style.left = dwellPosition + 'px';
-            moveFun()
-            lastBtnColor()
-        }
-        function lastFun() {
-            if (cardFlagArray.length) {
-                cardStackWrapper.push(cardFlagArray.shift())
-                draggedElement = cardStackWrapper[cardStackWrapper.length - 1]
-                draggedElement.style.transition = '.5s ease'
-                draggedElement.style.left = "0";
-                lastBtnColor()
-            }
-        }
-        function lastBtnColor() {
-            if (!cardFlagArray.length) {
-                last.style.fill = 'rgba(255,255,255,0.6)'
-            } else {
-                last.style.fill = 'rgba(0,0,0,1)'
-            }
-        }
-        // init function
-        function init() {
-          
-            cardInfo.forEach(item => {
-                const cardHtml = `<div class="card-stack-wrapper" style='background-image: url(${item.imgUrl});transform:rotateX(5deg) rotateY(0.438122deg) rotateZ(${Math.floor(Math.random() * 9 + 2)}deg) scale(1)'></div>`
-                cardSlide.innerHTML += cardHtml;
-            })
-            cardStackWrapper = Array.apply(null, document.querySelectorAll('.card-stack-wrapper'))
-            
-            describe.innerHTML = `<div class="tips">${cardInfo[cardStackWrapper.length - 1].tips}</div>
-                                  <div class="content-text">${cardInfo[cardStackWrapper.length - 1].contentText}</div>`
-            document.body.style.background = `rgb(${cardInfo[cardStackWrapper.length - 1].bgColor})`
-            
-            cardStackWrapper.forEach(dom => {
-                dom.onmousedown = dragMouseDown
-            })
-            nextWrapper.onclick = nextFun
-            lastWrapper.onclick = lastFun
-        }
-        init()
+function dragMouseDown(e) {
+  e = e || window.event;
+  e.preventDefault();
+  draggedElement = e.currentTarget;
+  pos3 = e.clientX; pos4 = e.clientY;
+  document.onmouseup   = closeDragElement;
+  document.onmousemove = elementDrag;
+}
+
+function elementDrag(e) {
+  e = e || window.event;
+  e.preventDefault();
+  draggedElement.style.transition = '';
+  pos1 = pos3 - e.clientX;
+  pos2 = pos4 - e.clientY;
+  pos3 = e.clientX; pos4 = e.clientY;
+  const ml = draggedElement.offsetLeft - pos1;
+  draggedElement.style.transform = 'rotateX(0) rotateY(0) rotateZ(' + (ml/dwellPosition*10) + 'deg) scale(1)';
+  draggedElement.style.left = ml + 'px';
+}
+
+function closeDragElement() {
+  draggedElement.style.transition = '.5s ease';
+  document.onmouseup = null;
+  document.onmousemove = null;
+  const lv = Number(draggedElement.style.left.replace('px',''));
+  if (lv > 200 || lv < -200) {
+    draggedElement.style.left = (lv > 0 ? dwellPosition : -dwellPosition) + 'px';
+    moveFun();
+  } else {
+    draggedElement.style.left = '0';
+    draggedElement.style.transform = 'rotateX(0) rotateY(0) rotateZ(0) scale(1)';
+  }
+}
+
+function moveFun() {
+  cardFlagArray.unshift(cardStackWrapper.pop());
+  describe.classList.remove('describe-appear-animation');
+  describe.classList.add('describe-disappear-animation');
+  if (cardStackWrapper.length) {
+    setTimeout(() => {
+      updateDescribe(cardStackWrapper.length - 1);
+      const top = cardStackWrapper[cardStackWrapper.length - 1];
+      top.style.transition = '.5s ease';
+      top.style.transform  = 'rotateX(0) rotateY(0) rotateZ(0) scale(1)';
+      top.style.boxShadow  = '0 20px 60px rgba(0,0,0,0.18), 0 4px 16px rgba(0,0,0,0.1)';
+      describe.classList.add('describe-appear-animation');
+      describe.classList.remove('describe-disappear-animation');
+    }, 420);
+  } else {
+    cardStackWrapper = cardFlagArray; cardFlagArray = [];
+    setTimeout(() => {
+      updateDescribe(cardStackWrapper.length - 1);
+      describe.classList.add('describe-appear-animation');
+      describe.classList.remove('describe-disappear-animation');
+      cardStackWrapper.forEach((dom, i) => {
+        dom.style.transform  = i !== cardStackWrapper.length - 1
+          ? 'rotateX(5deg) rotateY(0.44deg) rotateZ(' + (3+i*0.6) + 'deg) scale(1)'
+          : 'rotateX(0) rotateY(0) rotateZ(0) scale(1)';
+        dom.style.transition = '.' + (5+i) + 's';
+        dom.style.left = '0';
+      });
+    }, 420);
+  }
+  updateLastBtn();
+}
+
+function updateLastBtn() {
+  lastBtn.style.opacity = cardFlagArray.length ? '1' : '0.3';
+  lastBtn.style.pointerEvents = cardFlagArray.length ? 'auto' : 'none';
+}
+
+function init() {
+  cardInfo.forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'card-stack-wrapper';
+    const angle = (Math.random() * 9 + 2).toFixed(2);
+    div.style.backgroundImage = 'url(' + item.imgUrl + ')';
+    div.style.transform = 'rotateX(5deg) rotateY(0.44deg) rotateZ(' + angle + 'deg) scale(1)';
+    cardSlide.insertBefore(div, cardSlide.firstChild);
+  });
+  cardStackWrapper = Array.from(document.querySelectorAll('.card-stack-wrapper'));
+  const top = cardStackWrapper[cardStackWrapper.length - 1];
+  top.style.transform = 'rotateX(0) rotateY(0) rotateZ(0) scale(1)';
+  top.style.boxShadow = '0 20px 60px rgba(0,0,0,0.18), 0 4px 16px rgba(0,0,0,0.1)';
+  updateDescribe(cardStackWrapper.length - 1);
+  cardStackWrapper.forEach(dom => { dom.onmousedown = dragMouseDown; });
+  nextBtn.onclick = () => {
+    draggedElement = cardStackWrapper[cardStackWrapper.length - 1];
+    draggedElement.style.transition = '.5s ease';
+    draggedElement.style.left = dwellPosition + 'px';
+    moveFun();
+  };
+  lastBtn.onclick = () => {
+    if (cardFlagArray.length) {
+      cardStackWrapper.push(cardFlagArray.shift());
+      const t = cardStackWrapper[cardStackWrapper.length - 1];
+      t.style.transition = '.5s ease';
+      t.style.left = '0';
+      t.style.transform = 'rotateX(0) rotateY(0) rotateZ(0) scale(1)';
+      t.style.boxShadow = '0 20px 60px rgba(0,0,0,0.18)';
+      updateDescribe(cardStackWrapper.length - 1);
+      updateLastBtn();
+    }
+  };
+  updateLastBtn();
+}
+init();
     </script>
-    
+
+
+<section class="section-block">
+  <div class="section-eyebrow">Core Values</div>
+  <h2 class="section-heading">What drives<br><em>my work.</em></h2>
+  <div class="values-list">
+    <div class="value-row"><div class="value-title"><span class="value-star">✦</span><h3>Empathy</h3></div><p class="value-body">I design and listen with empathy to learn how users think and feel when interacting with products to create experiences that are intuitive, reduce friction, and genuinely support user needs.</p></div>
+    <div class="value-row"><div class="value-title"><span class="value-star">✦</span><h3>Authenticity</h3></div><p class="value-body">I value authenticity in my design and creating experiences that feel honest and trustworthy, building stronger user connections and more meaningful interactions.</p></div>
+    <div class="value-row"><div class="value-title"><span class="value-star">✦</span><h3>Reliability</h3></div><p class="value-body">I am dependable and committed to delivering thoughtful, high-quality work. My reliability allows teams to trust my process and ensures projects move forward smoothly.</p></div>
+    <div class="value-row"><div class="value-title"><span class="value-star">✦</span><h3>User-Focused</h3></div><p class="value-body">I prioritize the user in every stage of the design process, grounding decisions in real needs and behaviors. This ensures the solutions I create are not only usable, but helpful and relevant.</p></div>
+    <div class="value-row"><div class="value-title"><span class="value-star">✦</span><h3>Curiosity</h3></div><p class="value-body">I approach design with curiosity and a mindset of continuous learning. I actively seek feedback and new perspectives, allowing me to grow quickly and improve the quality of my work over time.</p></div>
+    <div class="value-row"><div class="value-title"><span class="value-star">✦</span><h3>Collaboration</h3></div><p class="value-body">I value clear communication and collaborative problem-solving. I work effectively with cross-functional teams to align ideas and create cohesive, user-centered solutions.</p></div>
+    <div class="value-row"><div class="value-title"><span class="value-star">✦</span><h3>Problem Solver</h3></div><p class="value-body">By breaking down complex challenges and iterating on solutions, I create clear, effective experiences that address both user and product needs.</p></div>
+  </div>
+</section>
+
+<section class="section-block">
+  <div class="section-eyebrow">Tools &amp; Software</div>
+  <h2 class="section-heading">My<br><em>toolkit.</em></h2>
+  <div class="tools-list">
+
+    <div class="tool-row">
+      <div class="tool-summary">
+        <div class="tool-icon-wrap"><img src="img/figma.png" alt="Figma"></div>
+        <span class="tool-name">Figma</span><span class="tool-years">3 years</span><span class="tool-expand">Hover</span>
+      </div>
+      <div class="tool-details">
+        <p class="tool-desc">I use Figma to design, prototype, and iterate on user interfaces. It allows me to quickly visualize ideas, collaborate with teammates, and test interactions, making it essential for turning concepts into tangible design solutions.</p>
+        <div class="tool-proficiency"><span class="prof-label">Proficiency</span><span class="stars">★★★★</span></div>
+        <div class="tool-metrics">
+          <div class="metric"><span>Skill Level</span><div class="bar"><div class="bar-fill" style="width:90%"></div></div><span class="metric-val">90%</span></div>
+          <div class="metric"><span>Experience</span><div class="bar"><div class="bar-fill gray" style="width:80%"></div></div><span class="metric-val">3 yrs</span></div>
+          <div class="metric"><span>Frequency</span><div class="bar"><div class="bar-fill light" style="width:90%"></div></div><span class="metric-val">Daily</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool-row">
+      <div class="tool-summary">
+        <div class="tool-icon-wrap"><img src="img/notion.png" alt="Notion"></div>
+        <span class="tool-name">Notion</span><span class="tool-years">4 years</span><span class="tool-expand">Hover</span>
+      </div>
+      <div class="tool-details">
+        <p class="tool-desc">I use Notion to organize research, track ideas, and document my design process. It helps me stay structured and ensures that my work is thoughtful, intentional, and easy to communicate.</p>
+        <div class="tool-proficiency"><span class="prof-label">Proficiency</span><span class="stars">★★★★</span></div>
+        <div class="tool-metrics">
+          <div class="metric"><span>Skill Level</span><div class="bar"><div class="bar-fill" style="width:75%"></div></div><span class="metric-val">75%</span></div>
+          <div class="metric"><span>Experience</span><div class="bar"><div class="bar-fill gray" style="width:60%"></div></div><span class="metric-val">4 yrs</span></div>
+          <div class="metric"><span>Frequency</span><div class="bar"><div class="bar-fill light" style="width:90%"></div></div><span class="metric-val">Daily</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool-row">
+      <div class="tool-summary">
+        <div class="tool-icon-wrap"><img src="img/vscode.svg" alt="VS Code"></div>
+        <span class="tool-name">VS Code</span><span class="tool-years">3 years</span><span class="tool-expand">Hover</span>
+      </div>
+      <div class="tool-details">
+        <p class="tool-desc">I use VS Code to understand how designs translate into code and to build simple front-end prototypes. This helps me design more realistically and collaborate more effectively with engineers.</p>
+        <div class="tool-proficiency"><span class="prof-label">Proficiency</span><span class="stars">★★★</span></div>
+        <div class="tool-metrics">
+          <div class="metric"><span>Skill Level</span><div class="bar"><div class="bar-fill" style="width:50%"></div></div><span class="metric-val">50%</span></div>
+          <div class="metric"><span>Experience</span><div class="bar"><div class="bar-fill gray" style="width:50%"></div></div><span class="metric-val">3 yrs</span></div>
+          <div class="metric"><span>Frequency</span><div class="bar"><div class="bar-fill light" style="width:50%"></div></div><span class="metric-val">Monthly</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool-row">
+      <div class="tool-summary">
+        <div class="tool-icon-wrap"><img src="img/creative-cloud.png" alt="Adobe"></div>
+        <span class="tool-name">Adobe Creative Cloud</span><span class="tool-years">3 years</span><span class="tool-expand">Hover</span>
+      </div>
+      <div class="tool-details">
+        <p class="tool-desc">I use Adobe tools like Photoshop and Illustrator to create visual assets and refine design details. These tools help me enhance the visual quality and storytelling aspects of my work.</p>
+        <div class="tool-proficiency"><span class="prof-label">Proficiency</span><span class="stars">★★★</span></div>
+        <div class="tool-metrics">
+          <div class="metric"><span>Skill Level</span><div class="bar"><div class="bar-fill" style="width:40%"></div></div><span class="metric-val">40%</span></div>
+          <div class="metric"><span>Experience</span><div class="bar"><div class="bar-fill gray" style="width:40%"></div></div><span class="metric-val">3 yrs</span></div>
+          <div class="metric"><span>Frequency</span><div class="bar"><div class="bar-fill light" style="width:30%"></div></div><span class="metric-val">Varies</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool-row">
+      <div class="tool-summary">
+        <div class="tool-icon-wrap"><img src="img/github.png" alt="GitHub"></div>
+        <span class="tool-name">GitHub</span><span class="tool-years">3 years</span><span class="tool-expand">Hover</span>
+      </div>
+      <div class="tool-details">
+        <p class="tool-desc">I use GitHub to manage and share code, as well as collaborate on projects. It allows me to understand version control and work more seamlessly with developers.</p>
+        <div class="tool-proficiency"><span class="prof-label">Proficiency</span><span class="stars">★★★★</span></div>
+        <div class="tool-metrics">
+          <div class="metric"><span>Skill Level</span><div class="bar"><div class="bar-fill" style="width:75%"></div></div><span class="metric-val">75%</span></div>
+          <div class="metric"><span>Experience</span><div class="bar"><div class="bar-fill gray" style="width:60%"></div></div><span class="metric-val">3 yrs</span></div>
+          <div class="metric"><span>Frequency</span><div class="bar"><div class="bar-fill light" style="width:50%"></div></div><span class="metric-val">Varies</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tool-row">
+      <div class="tool-summary">
+        <div class="tool-icon-wrap"><img src="img/canva.png" alt="Canva"></div>
+        <span class="tool-name">Canva</span><span class="tool-years">3 years</span><span class="tool-expand">Hover</span>
+      </div>
+      <div class="tool-details">
+        <p class="tool-desc">I use Canva for quick visual content and presentations. It helps me communicate ideas clearly and efficiently, especially when sharing concepts or storytelling in a more visual format.</p>
+        <div class="tool-proficiency"><span class="prof-label">Proficiency</span><span class="stars">★★★★</span></div>
+        <div class="tool-metrics">
+          <div class="metric"><span>Skill Level</span><div class="bar"><div class="bar-fill" style="width:85%"></div></div><span class="metric-val">85%</span></div>
+          <div class="metric"><span>Experience</span><div class="bar"><div class="bar-fill gray" style="width:80%"></div></div><span class="metric-val">3 yrs</span></div>
+          <div class="metric"><span>Frequency</span><div class="bar"><div class="bar-fill light" style="width:80%"></div></div><span class="metric-val">Daily</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="footer">
+  Designed &amp; Developed by Jamie Yang © 2025
+</section>
 
 </body>
 
