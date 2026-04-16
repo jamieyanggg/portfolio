@@ -14,7 +14,7 @@ const cardInfo = [
     },
     {
         bgColor: '255,208,213',
-        imgUrl: 'img/books.png',
+        imgUrl: 'img/design.avif',
         tips: 'DESIGNING WITH PURPOSE',
         contentText: 'I don’t just focus on how things look—I care about how they work, how they feel, and how they impact real users. I aim to contribute thoughtful, user-centered solutions while being a collaborative and proactive team member who helps create meaningful and effective products.'
     },
