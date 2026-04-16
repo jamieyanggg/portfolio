@@ -155,7 +155,7 @@ function init() {
     const angle = (Math.random() * 9 + 2).toFixed(2);
     div.style.backgroundImage = 'url(' + item.imgUrl + ')';
     div.style.transform = 'rotateX(5deg) rotateY(0.44deg) rotateZ(' + angle + 'deg) scale(1)';
-    cardSlide.insertBefore(div, cardSlide.firstChild);
+    cardSlide.appendChild(div, cardSlide.firstChild);
   });
   cardStackWrapper = Array.from(document.querySelectorAll('.card-stack-wrapper'));
   const top = cardStackWrapper[cardStackWrapper.length - 1];
